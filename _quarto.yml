@@ -1,0 +1,128 @@
+project:
+  type: book
+  output-dir: outputs/book
+  execute-dir: project
+  resources:
+    - resources/images/hero-data.svg
+
+book:
+  title: "Analyse de données avec R et Quarto"
+  subtitle: "Livre de formation progressive pour débutants"
+  author: "Équipe pédagogique — à compléter"
+  date: today
+  language: fr
+  search: true
+  reader-mode: true
+  page-navigation: true
+  bread-crumbs: true
+  favicon: resources/images/hero-data.svg
+  chapters:
+    - index.qmd
+    - part: "Partie I — Introduction"
+      chapters:
+        - chapters/01-introduction.qmd
+    - part: "Partie II — Fondamentaux de R"
+      chapters:
+        - chapters/02-fondements-r.qmd
+    - part: "Partie III — Acquisition des données"
+      chapters:
+        - chapters/03-acquisition-donnees.qmd
+    - part: "Partie IV — Préparation des données"
+      chapters:
+        - chapters/04-preparation-donnees.qmd
+    - part: "Partie V — Statistiques descriptives"
+      chapters:
+        - chapters/05-statistiques-descriptives.qmd
+    - part: "Partie VI — Visualisation"
+      chapters:
+        - chapters/06-visualisation.qmd
+    - part: "Partie VII — Modélisation"
+      chapters:
+        - chapters/07-modelisation.qmd
+    - part: "Partie VIII — Rapports"
+      chapters:
+        - chapters/08-rapports.qmd
+    - part: "Partie IX — Applications Shiny"
+      chapters:
+        - chapters/09-shiny.qmd
+    - part: "Partie X — Exercices et projets"
+      chapters:
+        - chapters/10-projets.qmd
+        - exercices/exercices-synthese.qmd
+        - exercices/corrections.qmd
+    - part: "Partie XI — Références et annexes"
+      chapters:
+        - chapters/11-annexes.qmd
+        - references.qmd
+  appendices:
+    - chapters/A-glossaire.qmd
+    - chapters/B-aide-memoire.qmd
+
+bibliography: resources/references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles/styles.scss
+    toc: true
+    toc-depth: 3
+    toc-title: "Sommaire"
+    number-sections: true
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    code-link: false
+    highlight-style: monokai
+    css: styles/styles.css
+    link-external-newwindow: true
+    smooth-scroll: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+          <meta name="theme-color" content="#0A2E2F">
+
+  pdf:
+    documentclass: book
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - margin=2.5cm
+    fig-pos: "H"
+    keep-tex: false
+  docx:
+    toc: true
+    number-sections: true
+    highlight-style: github
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+  cache: false
+
+# Utile pour GitHub Pages (URL du site à adapter après création du dépôt)
+# website:
+#   site-url: https://VOTRE_COMPTE.github.io/formation-r-quarto/
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    fig.width: 7
+    fig.height: 4.5
+    fig.align: "center"
+    dpi: 120
+    out.width: "100%"
+
+crossref:
+  fig-title: "Figure"
+  tbl-title: "Tableau"
+  title-delim: ":"
+  chapters: true

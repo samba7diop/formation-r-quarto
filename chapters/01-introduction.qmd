@@ -1,0 +1,274 @@
+# Introduction à l'analyse de données {#sec-analyse-donnees}
+
+## Introduction
+
+L'**analyse de données** consiste à transformer des informations brutes en connaissances utiles pour décider, comprendre ou communiquer. Que vous étudiiez des ventes, des notes d'examen ou des températures, le raisonnement reste le même : collecter, préparer, explorer, modéliser et présenter.
+
+Ce chapitre pose les bases : à quoi sert l'analyse de données, pourquoi R est un excellent choix, comment installer les outils, puis écrire et organiser votre premier programme.
+
+## Objectifs pédagogiques
+
+À la fin de ce chapitre, vous serez capable de :
+
+- Définir l'analyse de données et ses étapes principales
+- Expliquer les atouts de R pour la statistique et la science des données
+- Installer et vérifier R, Quarto et RStudio
+- Exécuter un premier script R
+- Organiser un projet d'analyse de façon reproductible
+
+## Prérequis
+
+Aucun prérequis en programmation. Une familiarité basique avec l'ordinateur (fichiers, dossiers, installation de logiciels) suffit.
+
+## Qu'est-ce que l'analyse de données ?
+
+### Une démarche en étapes
+
+1. **Question** — Que veut-on savoir ? (ex. : « Les ventes ont-elles augmenté au 2ᵉ semestre ? »)
+2. **Données** — Où sont les informations ? (fichiers, bases, enquêtes…)
+3. **Préparation** — Nettoyer, filtrer, joindre, corriger
+4. **Exploration** — Résumer, visualiser, repérer des patterns
+5. **Analyse** — Tests, modèles, incertitude
+6. **Communication** — Rapport, tableau de bord, présentation
+
+::: {.callout-note}
+## Vocabulaire essentiel
+- **Variable** : une caractéristique mesurée (âge, prix, région).
+- **Observation** : une ligne, un individu, une mesure.
+- **Jeu de données** (*dataset*) : tableau structuré de variables et d'observations.
+- **Reproductibilité** : pouvoir refaire l'analyse et obtenir le même résultat.
+:::
+
+### Domaines d'application
+
+R est utilisé en biologie, économie, marketing, épidémiologie, sciences sociales, finance, éducation, environnement, etc. Le point commun : des données tabulaires et un besoin de transparence méthodologique.
+
+## Pourquoi apprendre R ? {#sec-pourquoi-r}
+
+**R** est un langage libre, spécialisé dans la statistique et la visualisation. Ses atouts :
+
+| Atout | Explication |
+|-------|-------------|
+| Gratuit et open source | Pas de licence payante pour démarrer |
+| Écosystème riche | Des milliers de packages (tidyverse, ggplot2, shiny…) |
+| Qualité graphique | Graphiques publication-ready |
+| Reproductibilité | Scripts + Quarto = analyses documentées |
+| Communauté | Forums, livres, formations abondantes |
+
+::: {.callout-tip}
+## R ou Python ?
+Les deux sont excellents. R brille particulièrement pour la statistique, les rapports et la visualisation exploratoire. Ce livre se concentre sur R ; les compétences (logique, données, visualisation) se transfèrent ensuite.
+:::
+
+## Présentation de R, RStudio et Quarto {#sec-outils}
+
+- **R** : le moteur (langage + environnement statistique).
+- **RStudio Desktop** (Posit) : l'interface recommandée (éditeur, console, graphiques, fichiers).
+- **Quarto** : système de publication pour écrire ce livre et vos rapports (HTML, PDF, Word).
+
+RStudio n'est pas obligatoire : vous pouvez utiliser VS Code, Positron ou la console R. Pour débuter, RStudio reste le choix le plus confortable.
+
+## Installation et configuration {#sec-installation}
+
+### 1. Installer R
+
+1. Téléchargez R depuis <https://cran.r-project.org/>
+2. Choisissez votre système (Windows, macOS, Linux)
+3. Installez en suivant l'assistant (options par défaut acceptables)
+
+Vérification dans un terminal :
+
+```bash
+R --version
+# ou
+Rscript --version
+```
+
+### 2. Installer Quarto
+
+Téléchargez Quarto depuis <https://quarto.org/docs/get-started/> puis vérifiez :
+
+```bash
+quarto --version
+```
+
+Sous Windows, Quarto peut aussi être fourni avec RStudio (dossier `resources/app/bin/quarto`).
+
+### 3. Installer RStudio Desktop (recommandé)
+
+Téléchargez depuis <https://posit.co/download/rstudio-desktop/>.
+
+### 4. Installer les packages du livre
+
+Dans la console R :
+
+```{r eval=FALSE}
+source("R/packages_requis.R")
+```
+
+Ou manuellement :
+
+```{r eval=FALSE}
+install.packages(c(
+  "tidyverse", "readxl", "broom", "shiny",
+  "janitor", "gt", "scales", "writexl"
+))
+```
+
+### 5. PDF : distribution LaTeX
+
+Pour générer le PDF du livre :
+
+```{r eval=FALSE}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+::: {.callout-warning}
+## Attention
+L'installation de TinyTeX peut prendre plusieurs minutes et nécessite une connexion Internet. Le rendu HTML et DOCX ne l'exigent pas.
+:::
+
+## Premier programme en R {#sec-premier-programme}
+
+Ouvrez RStudio (ou une session R) et saisissez :
+
+```{r premier-calcul}
+# Calcul simple
+2 + 2
+
+# Affectation : on stocke un résultat dans un objet
+montant <- 19.90
+quantite <- 3
+total <- montant * quantite
+total
+
+# Afficher un message
+message("Bienvenue dans l'analyse de données avec R !")
+```
+
+### Anatomy d'une session
+
+- `<-` : opérateur d'affectation (lire « reçoit »)
+- `#` : commentaire (ignoré par R)
+- La console exécute ligne par ligne ; un script `.R` enregistre le code
+
+```{r premier-vecteur}
+# Un vecteur de notes
+notes <- c(12, 15, 9, 18, 14)
+mean(notes)   # moyenne
+sd(notes)     # écart-type
+summary(notes)
+```
+
+::: {.callout-important}
+## Erreur fréquente
+`=` fonctionne souvent comme `<-`, mais la convention pédagogique en R est **`<-`**. Évitez de confondre `==` (comparaison) et `<-` (affectation).
+:::
+
+## Organisation d'un projet d'analyse {#sec-organisation-projet}
+
+### Structure recommandée
+
+```text
+mon-projet/
+├── data/           # données brutes et nettoyées
+├── R/              # scripts réutilisables
+├── reports/        # fichiers .qmd
+├── outputs/        # figures et tableaux exportés
+└── README.md
+```
+
+### Bonnes pratiques dès le premier jour
+
+1. **Un projet RStudio** (fichier `.Rproj`) ancre le répertoire de travail.
+2. **Ne modifiez pas les données brutes** : gardez une copie intacte dans `data/brut/`.
+3. **Tout le traitement dans des scripts** : pas de clics non documentés.
+4. **Noms de fichiers explicites** : `nettoyer_ventes.R`, pas `script2.R`.
+
+```{r projet-chemin, eval=FALSE}
+# Connaître le dossier de travail
+getwd()
+
+# Lister les fichiers de données
+list.files("data")
+```
+
+Dans ce livre, les chemins sont relatifs au dossier `formation-r/`.
+
+## Démonstration : un mini-parcours
+
+```{r demo-intro}
+# Jeu de données intégré : voitures (mtcars)
+data(mtcars)
+head(mtcars, 3)
+
+# Combien de voitures ? Combien de variables ?
+dim(mtcars)
+
+# Consommation moyenne (miles per gallon)
+mean(mtcars$mpg)
+```
+
+Interprétation : `mtcars` contient 32 voitures et 11 variables. La moyenne de `mpg` donne une idée de la consommation typique dans cet échantillon historique.
+
+## Erreurs fréquentes
+
+| Problème | Cause probable | Solution |
+|----------|----------------|----------|
+| `object not found` | Nom mal orthographié ou objet non créé | Vérifier `ls()` et l'orthographe |
+| `cannot open file` | Mauvais chemin | Vérifier `getwd()` et `list.files()` |
+| Package manquant | Non installé | `install.packages("nom")` puis `library(nom)` |
+| Console « bloquée » | `+` en attente | Fermer une parenthèse ou Esc |
+
+## Exercices pratiques
+
+### Niveau 1 — Compréhension
+
+1. Citez les six étapes d'une analyse de données.
+2. Quelle différence entre R et RStudio ?
+3. À quoi sert Quarto dans ce projet ?
+
+### Niveau 2 — Application
+
+4. Calculez la somme et la moyenne du vecteur `c(10, 20, 30, 40)`.
+5. Créez un objet `prenom` contenant votre prénom et affichez-le avec `message()`.
+
+### Niveau 3 — Autonomie
+
+6. Explorez `iris` : nombre de lignes, de colonnes, noms des variables, moyenne de `Sepal.Length`.
+
+## Corrections
+
+```{r corr-intro-n2}
+v <- c(10, 20, 30, 40)
+sum(v)
+mean(v)
+
+prenom <- "Alex"
+message("Bonjour ", prenom)
+```
+
+```{r corr-intro-n3}
+data(iris)
+dim(iris)
+names(iris)
+mean(iris$Sepal.Length)
+```
+
+## Points clés {.points-cles}
+
+- L'analyse de données est une **démarche**, pas seulement du code.
+- **R** calcule ; **RStudio** facilite ; **Quarto** documente et publie.
+- Vérifiez les installations avec `Rscript --version` et `quarto --version`.
+- Organisez vos fichiers dès le début pour la reproductibilité.
+
+## Ressources complémentaires
+
+- Site officiel R : <https://www.r-project.org/>
+- Documentation Quarto : <https://quarto.org/>
+- *R for Data Science* [@r4ds]
+
+## Suite
+
+Le prochain chapitre (@sec-fondements-r) introduit la syntaxe, les types et les structures de données de R.

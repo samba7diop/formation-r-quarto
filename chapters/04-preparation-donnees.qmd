@@ -1,0 +1,342 @@
+# Nettoyage et préparation des données {#sec-preparation}
+
+## Introduction
+
+Des données mal préparées produisent des analyses trompeuses. Ce chapitre enseigne le **nettoyage** et la **transformation** avec `dplyr`, `tidyr`, `stringr` et `lubridate` : renommer, filtrer, créer des variables, traiter les NA, détecter doublons et aberrants, joindre des tables et pivoter.
+
+## Objectifs pédagogiques
+
+- Examiner et comprendre la structure d'un jeu de données
+- Chaîner des verbes dplyr (`%>%` / `|>`)
+- Traiter NA, doublons et valeurs aberrantes
+- Manipuler textes et dates
+- Agréger, joindre et pivoter
+- Construire un pipeline reproductible
+
+## Prérequis
+
+@sec-acquisition. Packages : `tidyverse`, `janitor` (utile), `lubridate`.
+
+```{r setup-prep}
+library(tidyverse)
+library(lubridate)
+if (requireNamespace("janitor", quietly = TRUE)) {
+  library(janitor)
+} else {
+  message("Package janitor non installé : clean_names() sera illustré sans exécution forcée.")
+}
+```
+
+## Qualité des données
+
+Une bonne qualité implique : types corrects, noms cohérents, peu de NA injustifiés, pas de doublons involontaires, valeurs dans des plages plausibles, documentation des règles de nettoyage.
+
+::: {.callout-important}
+## Règle d'or
+Ne modifiez jamais le fichier brut. Créez une version nettoyée via un script.
+:::
+
+## Examiner la structure
+
+```{r examiner}
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE)
+glimpse(ventes)
+skim_lite <- summary(ventes)
+```
+
+## Renommer, sélectionner, filtrer, trier
+
+```{r verbes-base}
+ventes_n <- ventes |>
+  rename(ca = montant) |>
+  select(id_vente, date, region, produit, quantite, ca) |>
+  filter(!is.na(region), ca > 0) |>
+  arrange(desc(ca))
+
+head(ventes_n, 3)
+```
+
+::: {.callout-note}
+## Vocabulaire dplyr
+- `select` : colonnes
+- `filter` : lignes
+- `mutate` : créer / modifier des variables
+- `arrange` : tri
+- `summarise` + `group_by` : agrégats
+:::
+
+## Créer des variables et modifier les types
+
+```{r mutate-types}
+ventes2 <- ventes |>
+  mutate(
+    date = as.Date(date),
+    mois = floor_date(date, "month"),
+    trimestre = quarter(date),
+    categorie_ca = case_when(
+      montant < 20 ~ "petit",
+      montant < 100 ~ "moyen",
+      TRUE ~ "gros"
+    ),
+    region = factor(region)
+  )
+table(ventes2$categorie_ca)
+```
+
+## Traiter les valeurs manquantes
+
+```{r na}
+colSums(is.na(ventes))
+
+# Options selon le contexte :
+# 1. Filtrer
+ventes_complet <- ventes |> filter(!is.na(region), !is.na(quantite))
+
+# 2. Imputer une valeur (avec prudence)
+ventes_imp <- ventes |>
+  mutate(quantite = replace_na(quantite, median(quantite, na.rm = TRUE)))
+
+# 3. Documenter et garder les NA pour analyse de non-réponse
+```
+
+::: {.callout-warning}
+## Ne pas imputer « par réflexe »
+Remplacer tous les NA par 0 peut biaiser une moyenne. Choisissez une règle **motivée** et notez-la dans le rapport.
+:::
+
+## Doublons
+
+```{r doublons}
+sum(duplicated(ventes))
+ventes_uniques <- ventes |> distinct()
+nrow(ventes) - nrow(ventes_uniques)
+```
+
+## Valeurs aberrantes
+
+```{r outliers}
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE)
+
+# Règle IQR pour l'âge
+Q1 <- quantile(demo$age, 0.25)
+Q3 <- quantile(demo$age, 0.75)
+IQR_age <- Q3 - Q1
+bornes <- c(Q1 - 1.5 * IQR_age, Q3 + 1.5 * IQR_age)
+bornes
+
+aberrants_age <- demo |> filter(age < bornes[1] | age > bornes[2])
+aberrants_age
+```
+
+Les aberrants ne sont pas automatiquement des erreurs : un revenu très élevé peut être réel. **Examinez** avant de supprimer.
+
+## Chaînes de caractères (`stringr`)
+
+```{r stringr}
+produits <- ventes |>
+  mutate(
+    produit_min = str_to_lower(produit),
+    commence_c = str_detect(produit, "^C"),
+    longueur = str_length(produit)
+  )
+head(produits[, c("produit", "produit_min", "commence_c")], 4)
+```
+
+## Dates (`lubridate`)
+
+```{r dates}
+meteo <- read_csv("data/meteo.csv", show_col_types = FALSE) |>
+  mutate(
+    date = ymd(date),
+    annee = year(date),
+    mois = month(date, label = TRUE, abbr = TRUE),
+    jour_semaine = wday(date, label = TRUE)
+  )
+head(meteo[, c("date", "mois", "jour_semaine")], 3)
+```
+
+## Regrouper et résumer
+
+```{r agregats}
+ca_region <- ventes |>
+  filter(!is.na(region)) |>
+  group_by(region) |>
+  summarise(
+    n = n(),
+    ca_total = sum(montant, na.rm = TRUE),
+    ca_moyen = mean(montant, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(desc(ca_total))
+ca_region
+```
+
+## Fusionner plusieurs tables
+
+```{r joins}
+clients <- read_csv("data/clients.csv", show_col_types = FALSE)
+commandes <- read_csv("data/commandes.csv", show_col_types = FALSE)
+
+commandes_enrichies <- commandes |>
+  left_join(clients, by = "client_id")
+
+head(commandes_enrichies, 3)
+
+# CA par segment
+commandes_enrichies |>
+  group_by(segment) |>
+  summarise(ca = sum(montant), n = n(), .groups = "drop")
+```
+
+Types de jointures : `left_join`, `inner_join`, `full_join`, `anti_join` (non appariés).
+
+## Large ↔ long (`tidyr`)
+
+```{r pivots}
+# Exemple long → large
+ca_long <- ca_region |> select(region, ca_total)
+ca_wide <- ca_long |>
+  pivot_wider(names_from = region, values_from = ca_total)
+ca_wide
+
+# Large → long
+ca_long2 <- ca_wide |>
+  pivot_longer(everything(), names_to = "region", values_to = "ca_total")
+ca_long2
+```
+
+## Pipeline de préparation reproductible
+
+```{r pipeline}
+preparer_ventes <- function(chemin = "data/ventes.csv") {
+  read_csv(chemin, show_col_types = FALSE) |>
+    distinct() |>
+    mutate(
+      date = as.Date(date),
+      region = str_trim(region)
+    ) |>
+    filter(!is.na(region), !is.na(quantite), montant > 0) |>
+    mutate(
+      mois = floor_date(date, "month"),
+      produit = factor(produit),
+      region = factor(region)
+    )
+}
+
+ventes_clean <- preparer_ventes()
+glimpse(ventes_clean)
+```
+
+```{r sauver-clean, eval=FALSE}
+write_csv(ventes_clean, "data/ventes_clean.csv")
+```
+
+## Démonstration complète
+
+```{r demo-prep}
+demo_clean <- demo |>
+  filter(age >= 18, age <= 100) |>
+  mutate(
+    revenu_mensuel = if_else(revenu_mensuel > 20000, NA_real_, revenu_mensuel),
+    sexe = factor(sexe),
+    ville = factor(ville)
+  )
+
+demo_clean |>
+  group_by(ville) |>
+  summarise(
+    n = n(),
+    age_moyen = mean(age),
+    revenu_median = median(revenu_mensuel, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+## Erreurs fréquentes
+
+| Erreur | Cause | Solution |
+|--------|-------|----------|
+| `filter(region == NA)` | Mauvaise syntaxe | `is.na(region)` / `!is.na` |
+| Jointure qui multiplie les lignes | Clé non unique | Vérifier `count(client_id)` |
+| `summarise` sans `group_by` voulu | Oubli | Contrôler le nombre de lignes résultat |
+| Dates en character | Pas de parsing | `ymd()` / `as.Date()` |
+
+## Exercices
+
+### Niveau 1
+
+1. À partir de `ventes`, sélectionnez `produit` et `montant`, triez par montant décroissant.
+2. Comptez les NA de `region`.
+
+### Niveau 2
+
+3. Calculez le CA total par `produit`.
+4. Joignez `commandes` et `clients` et calculez le montant moyen par `segment`.
+
+### Niveau 3
+
+5. Nettoyez `data/brut/ventes_brutes.csv` : noms propres (`clean_names`), types, suppression doublons, filtre NA.
+6. Pour `demographie`, créez `tranche_age` (18–30, 31–50, 51+) et un résumé du revenu médian par tranche.
+
+## Corrections
+
+```{r corr-prep-1}
+ventes |> select(produit, montant) |> arrange(desc(montant)) |> head(5)
+sum(is.na(ventes$region))
+```
+
+```{r corr-prep-3}
+ventes |>
+  group_by(produit) |>
+  summarise(ca = sum(montant, na.rm = TRUE), .groups = "drop")
+```
+
+```{r corr-prep-4}
+commandes |>
+  left_join(clients, by = "client_id") |>
+  group_by(segment) |>
+  summarise(montant_moyen = mean(montant), .groups = "drop")
+```
+
+```{r corr-prep-5}
+brut_clean <- read_csv("data/brut/ventes_brutes.csv", show_col_types = FALSE) |>
+  janitor::clean_names() |>
+  rename(
+    id_vente = id,
+    date = date_vente,
+    quantite = qte,
+    montant = total
+  ) |>
+  mutate(date = as.Date(date), produit = str_trim(produit)) |>
+  distinct() |>
+  filter(!is.na(region))
+nrow(brut_clean)
+```
+
+```{r corr-prep-6}
+demo |>
+  mutate(
+    tranche_age = case_when(
+      age <= 30 ~ "18-30",
+      age <= 50 ~ "31-50",
+      TRUE ~ "51+"
+    )
+  ) |>
+  group_by(tranche_age) |>
+  summarise(revenu_median = median(revenu_mensuel, na.rm = TRUE), n = n(), .groups = "drop")
+```
+
+## Points clés
+
+- Un pipeline clair bat une série de clics manuels.
+- Chaque transformation doit être **justifiée** et **vérifiable**.
+- Jointures et pivots sont au cœur de la mise en forme analytique.
+
+## Ressources
+
+- @tidyverse, documentation dplyr / tidyr
+- Package `janitor` pour les noms de colonnes
+
+## Suite
+
+@sec-descriptives : résumer et interpréter avec des statistiques descriptives.

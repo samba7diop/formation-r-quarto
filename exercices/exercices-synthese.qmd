@@ -1,0 +1,43 @@
+# Exercices de synthèse transversaux {#sec-exercices-synthese}
+
+Ces exercices mêlent plusieurs chapitres. Les corrections détaillées sont dans @sec-corrections.
+
+## Exercice S1 — Pipeline ventes (niveaux 1–3)
+
+1. Importez `data/ventes.csv`.
+2. Supprimez les doublons et les lignes sans région.
+3. Créez `mois` et calculez le CA mensuel.
+4. Affichez un graphique en barres des 5 produits au CA le plus élevé.
+5. Calculez la corrélation `quantite`–`montant` et commentez en une phrase.
+
+## Exercice S2 — Qualité démographie
+
+1. Listez les observations avec `age > 100` ou `revenu_mensuel > 20000`.
+2. Proposez une règle de nettoyage écrite (pas seulement du code).
+3. Après nettoyage, comparez revenu médian par `niveau_etudes`.
+
+## Exercice S3 — Mini-rapport Quarto
+
+Créez `outputs/mini_rapport_meteo.qmd` qui :
+
+- Charge `data/meteo.csv`
+- Affiche température moyenne annuelle
+- Trace la courbe mensuelle
+- Cite une limite de l'analyse
+
+## Exercice S4 — Shiny
+
+Dans `shiny-app`, ajoutez un texte affichant le nombre de lignes filtrées au-dessus de l'histogramme.
+
+## Quiz final (10 questions)
+
+1. Que retourne `typeof(1L)` ?
+2. Quelle fonction tidyverse lit un CSV ?
+3. `filter(is.na(x))` sélectionne-t-il les NA ?
+4. Quelle geom pour une série temporelle simple ?
+5. Que mesure l'écart-type ?
+6. `cor = 0` implique-t-il l'indépendance totale ?
+7. Quelle commande rend un PDF Quarto ?
+8. UI Shiny : `plotOutput` doit être associé à quel `render*` ?
+9. Pourquoi garder `data/brut/` intact ?
+10. Corrélation élevée ⇒ causalité ? (oui/non)

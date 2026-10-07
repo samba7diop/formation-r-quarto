@@ -1,0 +1,21 @@
+{
+  "hash": "4c7aebc58bc2178f4d954bb28af819de",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Corrections des exercices de synthèse {#sec-corrections}\n\n::: {.callout-tip}\n## Méthode\nTentez d'abord @sec-exercices-synthese sans regarder cette page.\n:::\n\n## Correction S1\n\n\n\n\n\n\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\nventes <- read_csv(\"data/ventes.csv\", show_col_types = FALSE) |>\n  distinct() |>\n  filter(!is.na(region)) |>\n  mutate(date = as.Date(date), mois = floor_date(date, \"month\"))\n\nca_mois <- ventes |>\n  group_by(mois) |>\n  summarise(ca = sum(montant), .groups = \"drop\")\nhead(ca_mois)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n#> # A tibble: 6 × 2\n#>   mois          ca\n#>   <date>     <dbl>\n#> 1 2023-01-01 1550.\n#> 2 2023-02-01 1682.\n#> 3 2023-03-01 1675.\n#> 4 2023-04-01 2333.\n#> 5 2023-05-01 2041.\n#> 6 2023-06-01 2254.\n```\n\n\n:::\n\n```{.r .cell-code}\ntop5 <- ventes |>\n  group_by(produit) |>\n  summarise(ca = sum(montant), .groups = \"drop\") |>\n  slice_max(ca, n = 5)\n\nggplot(top5, aes(reorder(produit, ca), ca)) +\n  geom_col(fill = \"#1a5276\") +\n  coord_flip() +\n  labs(title = \"Top 5 produits par CA\", x = NULL, y = \"CA\") +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](corrections_files/figure-docx/corr-s1-1.png){fig-align='center' width=100%}\n:::\n\n```{.r .cell-code}\ncor(ventes$quantite, ventes$montant)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n#> [1] NA\n```\n\n\n:::\n\n```{.r .cell-code}\n# Phrase : association positive — davantage d'unités tend à augmenter le montant, sans impliquer un mécanisme causal unique.\n```\n:::\n\n\n\n\n\n\n\n\n## Correction S2\n\n\n\n\n\n\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ndemo <- read_csv(\"data/demographie.csv\", show_col_types = FALSE)\ndemo |> filter(age > 100 | revenu_mensuel > 20000)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n#> # A tibble: 2 × 6\n#>      id   age sexe  ville revenu_mensuel niveau_etudes\n#>   <dbl> <dbl> <chr> <chr>          <dbl> <chr>        \n#> 1     3   150 Femme Paris           1104 Bac          \n#> 2     7    54 Femme Paris          50000 Master\n```\n\n\n:::\n\n```{.r .cell-code}\n# Règle : exclure âge hors [18, 100] et revenus > 20000 comme erreurs de saisie\n# documentées pour ce jeu pédagogique synthétique.\n\ndemo_c <- demo |>\n  filter(age >= 18, age <= 100, revenu_mensuel <= 20000)\n\ndemo_c |>\n  group_by(niveau_etudes) |>\n  summarise(revenu_median = median(revenu_mensuel), n = n(), .groups = \"drop\") |>\n  arrange(desc(revenu_median))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n#> # A tibble: 5 × 3\n#>   niveau_etudes revenu_median     n\n#>   <chr>                 <dbl> <int>\n#> 1 Doctorat              2334.     8\n#> 2 Licence               2307     59\n#> 3 Autre                 2168     19\n#> 4 Master                2168.    24\n#> 5 Bac                   2068.    38\n```\n\n\n:::\n:::\n\n\n\n\n\n\n\n\n## Correction S3 (contenu attendu)\n\n```markdown\n---\ntitle: \"Mini-rapport météo\"\nformat: html\n---\n\n```{{r}}\nlibrary(tidyverse)\nmeteo <- read_csv(\"data/meteo.csv\", show_col_types = FALSE) |>\n  mutate(date = as.Date(date))\nmean(meteo$temperature_c)\n```\n\nLimite : une seule ville simulée, pas de généralisation nationale.\n```\n\n## Correction S4\n\nDans `server`, ajouter par exemple :\n\n```r\noutput$n_lignes <- renderText({\n  paste(\"Lignes filtrées :\", nrow(donnees()$data))\n})\n```\n\nEt dans `ui` : `textOutput(\"n_lignes\")` au-dessus de `plotOutput(\"histo\")`.\n\n## Réponses du quiz final\n\n1. `\"integer\"`\n2. `readr::read_csv` (ou `read.csv`)\n3. Oui, les lignes où `x` est NA\n4. `geom_line` (souvent avec date en x)\n5. La dispersion typique autour de la moyenne\n6. Non (dépendance non linéaire possible)\n7. `quarto render --to pdf`\n8. `renderPlot`\n9. Traçabilité et possibilité de recommencer le nettoyage\n10. **Non**\n",
+    "supporting": [
+      "corrections_files\\figure-docx"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

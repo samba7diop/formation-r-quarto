@@ -1,0 +1,38 @@
+# Sorties générées (le site publié part sur la branche gh-pages)
+/outputs/
+/_book/
+/docs/
+
+# Cache Quarto local (garder _freeze pour accélérer le CI)
+/.quarto/
+
+# Artefacts knitr locaux
+*_cache/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporaires LaTeX / logs
+*.log
+*.tmp
+*.aux
+*.out
+*.toc
+*.tex
+
+# Secrets
+.env
+.Renviron.local
+
+# renv
+renv/library/
+renv/staging/

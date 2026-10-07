@@ -1,0 +1,97 @@
+# Corrections des exercices de synthèse {#sec-corrections}
+
+::: {.callout-tip}
+## Méthode
+Tentez d'abord @sec-exercices-synthese sans regarder cette page.
+:::
+
+## Correction S1
+
+```{r corr-s1}
+library(tidyverse)
+
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE) |>
+  distinct() |>
+  filter(!is.na(region)) |>
+  mutate(date = as.Date(date), mois = floor_date(date, "month"))
+
+ca_mois <- ventes |>
+  group_by(mois) |>
+  summarise(ca = sum(montant), .groups = "drop")
+head(ca_mois)
+
+top5 <- ventes |>
+  group_by(produit) |>
+  summarise(ca = sum(montant), .groups = "drop") |>
+  slice_max(ca, n = 5)
+
+ggplot(top5, aes(reorder(produit, ca), ca)) +
+  geom_col(fill = "#1a5276") +
+  coord_flip() +
+  labs(title = "Top 5 produits par CA", x = NULL, y = "CA") +
+  theme_minimal()
+
+cor(ventes$quantite, ventes$montant)
+# Phrase : association positive — davantage d'unités tend à augmenter le montant, sans impliquer un mécanisme causal unique.
+```
+
+## Correction S2
+
+```{r corr-s2}
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE)
+demo |> filter(age > 100 | revenu_mensuel > 20000)
+
+# Règle : exclure âge hors [18, 100] et revenus > 20000 comme erreurs de saisie
+# documentées pour ce jeu pédagogique synthétique.
+
+demo_c <- demo |>
+  filter(age >= 18, age <= 100, revenu_mensuel <= 20000)
+
+demo_c |>
+  group_by(niveau_etudes) |>
+  summarise(revenu_median = median(revenu_mensuel), n = n(), .groups = "drop") |>
+  arrange(desc(revenu_median))
+```
+
+## Correction S3 (contenu attendu)
+
+```markdown
+---
+title: "Mini-rapport météo"
+format: html
+---
+
+```{{r}}
+library(tidyverse)
+meteo <- read_csv("data/meteo.csv", show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+mean(meteo$temperature_c)
+```
+
+Limite : une seule ville simulée, pas de généralisation nationale.
+```
+
+## Correction S4
+
+Dans `server`, ajouter par exemple :
+
+```r
+output$n_lignes <- renderText({
+  paste("Lignes filtrées :", nrow(donnees()$data))
+})
+```
+
+Et dans `ui` : `textOutput("n_lignes")` au-dessus de `plotOutput("histo")`.
+
+## Réponses du quiz final
+
+1. `"integer"`
+2. `readr::read_csv` (ou `read.csv`)
+3. Oui, les lignes où `x` est NA
+4. `geom_line` (souvent avec date en x)
+5. La dispersion typique autour de la moyenne
+6. Non (dépendance non linéaire possible)
+7. `quarto render --to pdf`
+8. `renderPlot`
+9. Traçabilité et possibilité de recommencer le nettoyage
+10. **Non**

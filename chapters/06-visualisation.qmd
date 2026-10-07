@@ -1,0 +1,293 @@
+# Visualisation des données {#sec-visualisation}
+
+## Introduction
+
+Un bon graphique révèle des patterns que les tableaux peinent à montrer. Ce chapitre présente les principes de lisibilité et la **grammaire des graphiques** de `ggplot2` : barres, histogrammes, boîtes à moustaches, nuages de points, lignes, facettes et export.
+
+## Objectifs pédagogiques
+
+- Choisir un type de graphique adapté à la question
+- Construire des graphiques ggplot2 lisibles
+- Personnaliser titres, axes, couleurs et facettes
+- Exporter des figures pour un rapport
+- Éviter les erreurs courantes de représentation
+
+## Prérequis
+
+@sec-descriptives. Package `ggplot2` (tidyverse).
+
+```{r setup-viz}
+library(tidyverse)
+library(scales)
+
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE) |>
+  filter(!is.na(region))
+meteo <- read_csv("data/meteo.csv", show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE) |>
+  filter(age <= 100, revenu_mensuel < 20000)
+```
+
+## Pourquoi visualiser ?
+
+- Détecter outliers, asymétries, clusters
+- Comparer des groupes rapidement
+- Communiquer à un public non statisticien
+
+::: {.callout-note}
+## Vocabulaire ggplot2
+- **aes** : mapping esthétique (x, y, color, fill, size…)
+- **geom** : type de marque (barre, point, ligne…)
+- **scale** : échelle (couleurs, axes)
+- **facet** : petits multiples
+- **theme** : apparence (fond, grilles, polices)
+:::
+
+## Principes de lisibilité
+
+1. Un graphique = **un message** principal
+2. Axes légendés avec unités
+3. Couleurs accessibles (contraste, pas seulement rouge/vert)
+4. Pas de 3D inutile ni de dual-axis trompeur
+5. Titre informatif (« CA par région en 2023 ») plutôt que décoratif
+
+## Diagrammes en barres
+
+**Objectif** : comparer des quantités entre catégories.
+
+```{r barres}
+ca_region <- ventes |>
+  group_by(region) |>
+  summarise(ca = sum(montant), .groups = "drop")
+
+ggplot(ca_region, aes(x = reorder(region, ca), y = ca)) +
+  geom_col(fill = "#1a5276") +
+  coord_flip() +
+  labs(
+    title = "Chiffre d'affaires par région",
+    x = "Région", y = "CA"
+  ) +
+  theme_minimal()
+```
+
+**Interprétation** : la longueur des barres montre le CA total ; le tri facilite le classement.
+
+## Histogrammes
+
+**Objectif** : voir la distribution d'une variable quantitative.
+
+```{r hist}
+ggplot(demo, aes(x = revenu_mensuel)) +
+  geom_histogram(bins = 20, fill = "#148f77", color = "white") +
+  labs(
+    title = "Distribution des revenus mensuels",
+    x = "Revenu mensuel", y = "Effectif"
+  ) +
+  theme_minimal()
+```
+
+## Boîtes à moustaches
+
+**Objectif** : comparer distributions entre groupes (médiane, IQR, extrêmes).
+
+```{r boxplot}
+ggplot(demo, aes(x = ville, y = age)) +
+  geom_boxplot(fill = "#d5f5e3") +
+  labs(title = "Âge par ville", x = NULL, y = "Âge") +
+  theme_minimal()
+```
+
+## Graphiques de dispersion
+
+**Objectif** : relation entre deux quantitatives.
+
+```{r scatter}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = factor(cyl)), size = 2.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "gray30") +
+  labs(
+    title = "Consommation selon le poids",
+    x = "Poids (1000 lbs)", y = "Miles / gallon",
+    color = "Cylindres"
+  ) +
+  theme_minimal()
+```
+
+**Interprétation** : tendance négative ; le lissage linéaire aide à voir la pente, sans prouver la causalité.
+
+## Graphiques linéaires
+
+**Objectif** : évolution dans le temps.
+
+```{r lignes}
+meteo_mois <- meteo |>
+  mutate(mois = floor_date(date, "month")) |>
+  group_by(mois) |>
+  summarise(temp = mean(temperature_c), .groups = "drop")
+
+ggplot(meteo_mois, aes(x = mois, y = temp)) +
+  geom_line(color = "#1a5276", linewidth = 1) +
+  geom_point() +
+  labs(
+    title = "Température moyenne mensuelle (2023)",
+    x = NULL, y = "°C"
+  ) +
+  theme_minimal()
+```
+
+## Comparaison de plusieurs groupes
+
+```{r groupes-viz}
+ggplot(ventes, aes(x = region, y = montant, fill = region)) +
+  geom_violin(alpha = 0.7, show.legend = FALSE) +
+  geom_boxplot(width = 0.15, fill = "white", outlier.size = 0.8) +
+  labs(title = "Distribution des montants par région", y = "Montant") +
+  theme_minimal()
+```
+
+## Personnalisation : titres, axes, légendes
+
+```{r custom}
+ggplot(ca_region, aes(x = region, y = ca)) +
+  geom_col(fill = "#1a5276") +
+  scale_y_continuous(labels = label_number(big.mark = " ")) +
+  labs(
+    title = "CA par région",
+    subtitle = "Données pédagogiques 2023",
+    caption = "Source : data/ventes.csv",
+    x = NULL, y = "Chiffre d'affaires"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold", color = "#1a5276"))
+```
+
+## Couleurs
+
+```{r couleurs}
+ggplot(ventes, aes(x = produit, fill = produit)) +
+  geom_bar(show.legend = FALSE) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Effectifs par produit", x = NULL, y = "n") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+## Facettes
+
+```{r facettes}
+ggplot(demo, aes(x = revenu_mensuel)) +
+  geom_histogram(bins = 15, fill = "#1a5276", color = "white") +
+  facet_wrap(~sexe) +
+  labs(title = "Revenus selon le sexe", x = "Revenu", y = "n") +
+  theme_minimal()
+```
+
+## Exportation
+
+```{r export-plot, eval=FALSE}
+p <- ggplot(ca_region, aes(region, ca)) + geom_col()
+ggsave("outputs/ca_region.png", p, width = 7, height = 4, dpi = 150)
+```
+
+```{r export-plot-demo}
+dir.create("outputs", showWarnings = FALSE)
+p <- ggplot(ca_region, aes(region, ca)) +
+  geom_col(fill = "#1a5276") +
+  theme_minimal()
+ggsave("outputs/ca_region.png", p, width = 7, height = 4, dpi = 120)
+file.exists("outputs/ca_region.png")
+```
+
+## Grammaire ggplot2 (rappel)
+
+```text
+ggplot(donnees, aes(...)) +
+  geom_*() +
+  scale_*() +
+  facet_*() +
+  labs() +
+  theme_*()
+```
+
+## Erreurs courantes
+
+| Erreur | Pourquoi c'est problématique |
+|--------|------------------------------|
+| Camembert à 10 catégories | Illisible ; préférer barres |
+| Tronquer l'axe Y sans le dire | Exagère les différences |
+| Trop de couleurs / 3D | Charge cognitive, biais |
+| Nuage de points surabondant | Surplotting → `alpha`, hexbins |
+| Titre vague (« Graphique 1 ») | Aucune information |
+
+## Mini-collection pour un rapport
+
+```{r collection, fig.height=3.5}
+p1 <- ggplot(ca_region, aes(reorder(region, ca), ca)) +
+  geom_col(fill = "#1a5276") + coord_flip() +
+  labs(title = "A — CA par région", x = NULL, y = "CA") + theme_minimal()
+
+p2 <- ggplot(meteo_mois, aes(mois, temp)) +
+  geom_line(color = "#148f77") +
+  labs(title = "B — Température mensuelle", x = NULL, y = "°C") + theme_minimal()
+
+p1
+p2
+```
+
+## Exercices
+
+### Niveau 1
+
+1. Histogramme de `temperature_c` (meteo).
+2. Barres du nombre de ventes par `produit`.
+
+### Niveau 2
+
+3. Scatter `age` vs `revenu_mensuel` coloré par `sexe`.
+4. Boxplot de `montant` par `produit`.
+
+### Niveau 3
+
+5. Facette de l'histogramme des montants par région.
+6. Exportez un graphique en PNG dans `outputs/`.
+
+## Corrections
+
+```{r corr-viz-1}
+ggplot(meteo, aes(temperature_c)) +
+  geom_histogram(bins = 25, fill = "#148f77", color = "white") +
+  theme_minimal()
+
+ggplot(ventes, aes(produit)) + geom_bar(fill = "#1a5276") + theme_minimal()
+```
+
+```{r corr-viz-3}
+ggplot(demo, aes(age, revenu_mensuel, color = sexe)) +
+  geom_point(alpha = 0.7) + theme_minimal()
+
+ggplot(ventes, aes(produit, montant)) +
+  geom_boxplot() +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+```{r corr-viz-5}
+ggplot(ventes, aes(montant)) +
+  geom_histogram(bins = 20, fill = "#1a5276") +
+  facet_wrap(~region) +
+  theme_minimal()
+```
+
+## Points clés
+
+- Le type de geom suit le type de variable et la question.
+- `ggplot2` compose des couches ; gardez le message simple.
+- Toujours légender et contextualiser (source, unités, période).
+
+## Ressources
+
+- @wickham2016, <https://ggplot2.tidyverse.org/>
+
+## Suite
+
+@sec-modelisation : passer de la description à l'inférence et à la régression.

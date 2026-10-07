@@ -1,0 +1,83 @@
+# Références, annexes et navigation {#sec-annexes}
+
+## Introduction
+
+Cette partie regroupe les ressources de révision : glossaire détaillé (@sec-glossaire), aide-mémoires (@sec-aide-memoire), guide d'erreurs, références officielles et pistes de publication.
+
+## Guide des erreurs fréquentes
+
+| Message / symptôme | Cause fréquente | Solution |
+|--------------------|-----------------|----------|
+| `object 'x' not found` | Objet non créé / typo | `ls()`, revérifier le chunk |
+| `could not find function` | Package non chargé | `library(...)` |
+| `Cannot open file` | Mauvais chemin | `getwd()`, projet RStudio |
+| `unexpected ')'` | Parenthese en trop/manquant | Repérer la ligne du `+` console |
+| PDF Quarto échoue | Pas de LaTeX | `tinytex::install_tinytex()` |
+| Jointure explosée | Clés dupliquées | `count(id)` avant join |
+| Graphique vide | Données filtrées à 0 lignes | `nrow()` avant ggplot |
+| Facteur → nombres bizarres | Conversion directe | `as.numeric(as.character(f))` |
+
+## Tableau des fonctions R essentielles
+
+| Fonction | Rôle |
+|----------|------|
+| `c()` | Créer un vecteur |
+| `data.frame()` / `tibble()` | Tableau |
+| `mean`, `median`, `sd`, `summary` | Descriptifs |
+| `read_csv` / `write_csv` | Import / export CSV |
+| `filter`, `select`, `mutate` | Transformation |
+| `group_by`, `summarise` | Agrégation |
+| `left_join` | Jointure |
+| `ggplot` + `geom_*` | Visualisation |
+| `lm`, `t.test`, `cor.test` | Modèles / tests |
+| `set.seed` | Reproductibilité |
+
+## Publication GitHub Pages (facultatif)
+
+1. Créer un dépôt Git et pousser les **sources**
+2. Rendre le livre : `quarto render --to html`
+3. Publier le contenu de `outputs/book/` (Actions ou branche `gh-pages`)
+4. Documenter l'URL dans le README
+
+Le livre reste consultable **localement** sans compte externe : ouvrez `outputs/book/index.html`.
+
+## Mise à jour du projet
+
+```bash
+# Régénérer les données synthétiques
+Rscript R/generer_donnees.R
+
+# Vérifier / installer les packages
+Rscript R/packages_requis.R
+
+# Rebuild
+quarto render --to html
+```
+
+## Index de navigation
+
+| Thème | Section |
+|-------|---------|
+| Installation | @sec-installation |
+| Fondamentaux R | @sec-fondements-r |
+| Import | @sec-acquisition |
+| Nettoyage | @sec-preparation |
+| Descriptives | @sec-descriptives |
+| Graphiques | @sec-visualisation |
+| Modélisation | @sec-modelisation |
+| Quarto | @sec-rapports |
+| Shiny | @sec-shiny |
+| Projets | @sec-projets |
+| Glossaire | @sec-glossaire |
+| Aide-mémoire | @sec-aide-memoire |
+
+## Références officielles
+
+- R : <https://www.r-project.org/> [@R-core]
+- Quarto : <https://quarto.org/> [@quarto]
+- tidyverse : <https://www.tidyverse.org/> [@tidyverse]
+- ggplot2 : <https://ggplot2.tidyverse.org/> [@wickham2016]
+- Shiny : <https://shiny.posit.co/> [@shiny]
+- R for Data Science : <https://r4ds.hadley.nz/> [@r4ds]
+
+La bibliographie formatée figure en fin d'ouvrage (chapitre Références).

@@ -1,0 +1,277 @@
+# Analyse statistique et modélisation {#sec-modelisation}
+
+## Introduction
+
+La **statistique inférentielle** cherche à tirer des conclusions sur une population à partir d'un échantillon, en quantifiant l'incertitude. Ce chapitre introduit population/échantillon, intervalles de confiance, tests d'hypothèses, corrélation, régression linéaire et ses limites — notamment la distinction **corrélation / causalité**.
+
+## Objectifs pédagogiques
+
+- Distinguer description et inférence
+- Interpréter un intervalle de confiance et une p-valeur avec prudence
+- Comparer des moyennes
+- Ajuster et diagnostiquer une régression linéaire
+- Évaluer les performances et les limites d'un modèle
+
+## Prérequis
+
+@sec-descriptives et @sec-visualisation. Package `broom`.
+
+```{r setup-mod}
+library(tidyverse)
+library(broom)
+
+etudes <- read_csv("data/etudes_notes.csv", show_col_types = FALSE)
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE) |>
+  filter(age <= 100, revenu_mensuel < 20000)
+```
+
+## Population et échantillon
+
+- **Population** : ensemble cible (tous les clients, tous les étudiants…)
+- **Échantillon** : sous-ensemble observé
+- **Paramètre** : caractéristique de la population (souvent inconnue)
+- **Statistique** : caractéristique calculée sur l'échantillon
+
+::: {.callout-note}
+## Vocabulaire
+- **Estimateur** : règle de calcul (ex. moyenne empirique)
+- **Biais** : erreur systématique
+- **Variance d'échantillonnage** : variabilité d'un estimateur entre échantillons
+:::
+
+## Variables quantitatives et qualitatives
+
+| Type | Exemples | Analyses typiques |
+|------|----------|-------------------|
+| Quantitative continue | revenu, température | moyenne, régression |
+| Quantitative discrète | nombre d'achats | effectifs, Poisson (avancé) |
+| Qualitative nominale | région, sexe | tableaux, chi-2 |
+| Qualitative ordinale | niveau d'études | rangs, tendances |
+
+## Échantillonnage (principes)
+
+Un échantillon **aléatoire** simple donne à chaque unité la même chance d'être tirée. Les biais de sélection (volontaires uniquement, survivants…) invalident souvent l'inférence.
+
+## Probabilités et distributions de base
+
+```{r distributions}
+# Loi normale : densité
+x <- seq(-3, 3, length.out = 200)
+dens <- dnorm(x, mean = 0, sd = 1)
+
+# Probabilité P(Z <= 1.96) ≈ 0.975
+pnorm(1.96)
+
+# Quantile 97.5 %
+qnorm(0.975)
+```
+
+Beaucoup de moyennes d'échantillons se rapprochent d'une normale lorsque n est assez grand (théorème central limite) — sous conditions.
+
+## Intervalles de confiance
+
+```{r ic}
+# IC à 95 % pour la moyenne du revenu (approx. normale)
+n <- nrow(demo)
+m <- mean(demo$revenu_mensuel)
+s <- sd(demo$revenu_mensuel)
+erreur <- qt(0.975, df = n - 1) * s / sqrt(n)
+c(bas = m - erreur, haut = m + erreur)
+```
+
+**Interprétation correcte** : la procédure à 95 % couvre le vrai paramètre dans 95 % des échantillons répétés. Ce n'est **pas** « la probabilité que le paramètre soit dans cet intervalle » au sens bayésien naïf.
+
+## Tests d'hypothèses (introduction)
+
+1. Hypothèse nulle \(H_0\) (souvent : « pas d'effet / pas de différence »)
+2. Hypothèse alternative \(H_1\)
+3. Statistique de test + **p-valeur**
+4. Décision au seuil α (souvent 5 %), **avec contexte**
+
+::: {.callout-warning}
+## La p-valeur n'est pas…
+- la probabilité que \(H_0\) soit vraie
+- la taille de l'effet
+- une preuve de causalité
+
+Une p-valeur faible suggère que des données aussi extrêmes sont rares si \(H_0\) est vraie — pas plus.
+:::
+
+## Comparaison de moyennes
+
+```{r t-test}
+# Revenu Homme vs Femme
+hommes <- demo$revenu_mensuel[demo$sexe == "Homme"]
+femmes <- demo$revenu_mensuel[demo$sexe == "Femme"]
+
+t.test(hommes, femmes, var.equal = FALSE)
+```
+
+Vérifiez n, normalité approximative / robustesse, et l'écart **pratique** (différence de moyennes), pas seulement la significativité.
+
+## Corrélation et association
+
+```{r cor-test}
+cor.test(etudes$heures_etude, etudes$note_examen)
+```
+
+Pour deux qualitatives : test du chi-2 sur tableau croisé (`chisq.test`).
+
+## Régression linéaire simple
+
+Modèle : \(Y = \beta_0 + \beta_1 X + \varepsilon\)
+
+```{r lm-simple}
+mod1 <- lm(note_examen ~ heures_etude, data = etudes)
+summary(mod1)
+tidy(mod1)
+glance(mod1)
+```
+
+**Lecture** : la pente estime la variation moyenne de la note pour une heure d'étude supplémentaire **dans le modèle et l'échantillon**, toutes choses égales selon les hypothèses. \(R^2\) mesure la part de variance expliquée — pas la vérité causale.
+
+```{r lm-plot}
+ggplot(etudes, aes(heures_etude, note_examen)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "#1a5276") +
+  labs(
+    title = "Notes selon les heures d'étude",
+    x = "Heures d'étude", y = "Note"
+  ) +
+  theme_minimal()
+```
+
+## Régression linéaire multiple
+
+```{r lm-multi}
+mod2 <- lm(mpg ~ wt + hp + factor(cyl), data = mtcars)
+tidy(mod2)
+glance(mod2)$r.squared
+```
+
+Attention à la **multicolinéarité** et au surajustement lorsque le nombre de prédicteurs devient grand face à n.
+
+## Hypothèses et résidus
+
+Hypothèses classiques du modèle linéaire (simplifiées) :
+
+- Linéarité de la relation
+- Erreurs indépendantes
+- Variance approximativement constante (homoscédasticité)
+- Normalité des erreurs (surtout pour inférence exacte à petit n)
+- Pas de leviers/outliers trop influents sans examen
+
+```{r residus}
+aug <- augment(mod1)
+
+ggplot(aug, aes(.fitted, .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Résidus vs valeurs ajustées", x = "Ajusté", y = "Résidu") +
+  theme_minimal()
+```
+
+```{r qq}
+ggplot(aug, aes(sample = .resid)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "QQ-plot des résidus") +
+  theme_minimal()
+```
+
+## Évaluation des performances
+
+```{r perf}
+# R² et R² ajusté
+glance(mod1) |> select(r.squared, adj.r.squared, sigma, AIC)
+
+# Erreur absolue moyenne (sur l'échantillon d'apprentissage — optimiste)
+mean(abs(aug$.resid))
+```
+
+Pour une évaluation plus honnête : séparer train/test ou validation croisée (niveau avancé).
+
+## Limites : corrélation versus causalité
+
+Exemples de raisonnement incorrect :
+
+- « Les ventes de glaces et les noyades corrélent → les glaces causent les noyades » (facteur tiers : chaleur)
+- « Le modèle prédit bien → le levier d'action est prouvé » (sans design expérimental / inférence causale)
+
+Les tests et régressions **éclairent** ; ils ne remplacent pas le raisonnement scientifique, le design d'étude et la connaissance du domaine.
+
+::: {.callout-important}
+## Message clé du chapitre
+Significativité statistique ≠ importance pratique ≠ causalité.
+:::
+
+## Démonstration complète
+
+```{r demo-mod}
+mod_final <- lm(note_examen ~ heures_etude + filiere, data = etudes)
+tidy(mod_final)
+glance(mod_final)
+
+# Prédiction pour 10 h d'étude, filière Sciences
+predict(
+  mod_final,
+  newdata = data.frame(heures_etude = 10, filiere = "Sciences"),
+  interval = "confidence"
+)
+```
+
+## Exercices
+
+### Niveau 1
+
+1. Calculez `cor(etudes$heures_etude, etudes$note_examen)`.
+2. Que signifie \(H_0\) dans un test de moyenne égale à 0 pour une pente ?
+
+### Niveau 2
+
+3. Ajustez `lm(revenu_mensuel ~ age + sexe, data = demo)` et lisez `tidy()`.
+4. Produisez le graphique résidus vs ajustés.
+
+### Niveau 3
+
+5. Comparez `mod1` (simple) et un modèle `note ~ heures_etude + filiere` via `AIC` / `adj.r.squared`.
+6. Rédigez 5 lignes : ce que le modèle dit, ce qu'il ne dit pas.
+
+## Corrections
+
+```{r corr-mod-1}
+cor(etudes$heures_etude, etudes$note_examen)
+# H0 pour la pente : beta1 = 0 (pas d'association linéaire)
+```
+
+```{r corr-mod-3}
+mod_d <- lm(revenu_mensuel ~ age + sexe, data = demo)
+tidy(mod_d)
+augment(mod_d) |>
+  ggplot(aes(.fitted, .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  theme_minimal()
+```
+
+```{r corr-mod-5}
+m_a <- lm(note_examen ~ heures_etude, data = etudes)
+m_b <- lm(note_examen ~ heures_etude + filiere, data = etudes)
+glance(m_a) |> select(adj.r.squared, AIC)
+glance(m_b) |> select(adj.r.squared, AIC)
+```
+
+## Points clés
+
+- Inférence = généraliser avec incertitude.
+- IC, tests et régressions ont des hypothèses et des limites.
+- Diagnostiquez les résidus ; méfiez-vous de la causalité spontanée.
+
+## Ressources
+
+- @ims, @R-core (`?lm`, `?t.test`)
+- `broom` pour des sorties tidy
+
+## Suite
+
+@sec-rapports : communiquer analyses et graphiques avec Quarto.

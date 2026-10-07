@@ -1,0 +1,292 @@
+# Acquisition et importation des données {#sec-acquisition}
+
+## Introduction
+
+Avant d'analyser, il faut **obtenir** les données et les **lire correctement** dans R. Ce chapitre couvre les sources courantes (CSV, Excel, texte), l'export, les jeux intégrés, les chemins de fichiers, ainsi que les principes d'accès aux bases et au Web — le tout de façon utilisable hors ligne une fois les fichiers présents dans `data/`.
+
+## Objectifs pédagogiques
+
+- Identifier les principales sources de données
+- Importer CSV, Excel et fichiers texte
+- Exporter des résultats
+- Gérer les chemins et le dossier de travail
+- Vérifier la qualité d'un import
+- Comprendre (sans dépendance réseau) bases de données et API
+
+## Prérequis
+
+@sec-fondements-r (data frames, fonctions). Fichiers disponibles dans `data/`.
+
+## Comprendre les sources de données
+
+| Source | Exemple | Package / fonction |
+|--------|---------|-------------------|
+| CSV | exports ERP, open data | `readr::read_csv`, `read.csv` |
+| Excel | fichiers métier | `readxl::read_excel` |
+| Texte | logs, exports TSV | `read.table`, `read_tsv` |
+| R intégré | `mtcars`, `iris` | `data()` |
+| Base SQL | PostgreSQL, SQLite | `DBI`, `RSQLite` |
+| API / Web | JSON, HTML | `httr2`, `jsonlite` |
+
+::: {.callout-note}
+## Vocabulaire
+- **Encodage** : représentation des caractères (UTF-8 recommandé).
+- **Séparateur** : `,` `;` ou tabulation entre colonnes.
+- **En-tête** : première ligne = noms de variables.
+- **Données brutes** : fichier original non modifié.
+:::
+
+## Importer des fichiers CSV
+
+```{r import-csv}
+library(readr)
+
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE)
+head(ventes, 3)
+nrow(ventes)
+colnames(ventes)
+```
+
+Avec le R de base :
+
+```{r import-csv-base}
+ventes_base <- read.csv("data/ventes.csv", fileEncoding = "UTF-8")
+# stringsAsFactors = FALSE est le défaut depuis R 4.0
+```
+
+::: {.callout-tip}
+## `readr` vs `read.csv`
+`read_csv` est plus rapide, devine mieux les types et retourne un tibble. Pour ce livre, nous privilégions `readr` (tidyverse).
+:::
+
+Fichier « sale » (noms irréguliers) :
+
+```{r import-brut}
+brut <- read_csv("data/brut/ventes_brutes.csv", show_col_types = FALSE)
+names(brut)
+```
+
+## Lire des fichiers Excel
+
+```{r import-excel}
+library(readxl)
+
+# Lister les feuilles
+excel_sheets("data/ventes.xlsx")
+
+ventes_xl <- read_excel("data/ventes.xlsx", sheet = 1)
+head(ventes_xl, 2)
+```
+
+Arguments utiles : `sheet`, `range`, `skip`, `na`.
+
+## Importer des fichiers texte
+
+```{r import-txt}
+meteo_txt <- read_tsv("data/meteo_extrait.txt", show_col_types = FALSE)
+head(meteo_txt, 3)
+```
+
+Ou :
+
+```{r import-table}
+meteo2 <- read.table(
+  "data/meteo_extrait.txt",
+  header = TRUE,
+  sep = "\t",
+  fileEncoding = "UTF-8"
+)
+```
+
+## Exporter des données
+
+```{r export, eval=FALSE}
+write_csv(ventes, "outputs/ventes_export.csv")
+write.csv(ventes, "outputs/ventes_export_base.csv", row.names = FALSE)
+```
+
+```{r export-demo}
+dir.create("outputs", showWarnings = FALSE)
+write_csv(head(ventes, 10), "outputs/ventes_apercu.csv")
+file.exists("outputs/ventes_apercu.csv")
+```
+
+## Jeux de données intégrés
+
+```{r datasets-integres}
+data(mtcars)
+data(iris)
+# Liste partielle
+head(ls("package:datasets"), 15)
+```
+
+Des packages apportent aussi des données (`palmerpenguins`, `ggplot2::mpg`, etc.).
+
+## Chemins de fichiers et dossiers de travail
+
+```{r chemins}
+getwd()
+list.files("data")
+file.exists("data/ventes.csv")
+```
+
+::: {.callout-warning}
+## Évitez `setwd()` dans les scripts partagés
+Le chemin absolu d'un collègue diffère du vôtre. Préférez un **projet RStudio** (`.Rproj`) ou le package `here`.
+:::
+
+```{r chemins-relatifs, eval=FALSE}
+# Bon : relatif au projet
+read_csv("data/ventes.csv")
+
+# Fragile : chemin absolu machine-dépendant
+# read_csv("C:/Users/Moi/Desktop/ventes.csv")
+```
+
+## Principes d'accès aux bases de données
+
+Sans installer de serveur, retenez le schéma mental :
+
+```{r db-principe, eval=FALSE}
+# Exemple conceptuel avec SQLite
+library(DBI)
+library(RSQLite)
+con <- dbConnect(RSQLite::SQLite(), "data/exemple.sqlite")
+dbListTables(con)
+df <- dbGetQuery(con, "SELECT * FROM ventes LIMIT 10")
+dbDisconnect(con)
+```
+
+Idées clés : connexion → requête SQL → data frame → fermer la connexion. Ne committez jamais de mots de passe dans Git.
+
+## API et données Web (principes hors ligne)
+
+Les API renvoient souvent du **JSON**. Le flux typique :
+
+1. Requête HTTP (`httr2` / `httr`)
+2. Parsing JSON (`jsonlite`)
+3. Normalisation en data frame (`tidyr::unnest`, etc.)
+
+Pour ce livre, les exercices restent sur fichiers locaux afin de fonctionner **sans Internet**.
+
+## Vérifier la qualité des données importées
+
+```{r qualite}
+library(dplyr)
+
+glimpse(ventes)
+summary(ventes)
+
+# Valeurs manquantes par colonne
+colSums(is.na(ventes))
+
+# Doublons potentiels
+sum(duplicated(ventes))
+```
+
+Checklist d'import :
+
+1. Nombre de lignes / colonnes attendu ?
+2. Types corrects (dates en date, nombres en numeric) ?
+3. Encodage des accents OK ?
+4. NA, doublons, valeurs extrêmes ?
+
+```{r qualite-meteo}
+meteo <- read_csv("data/meteo.csv", show_col_types = FALSE)
+summary(meteo$temperature_c)
+range(meteo$date)
+```
+
+## Démonstration complète
+
+```{r demo-acquisition}
+library(readr)
+library(dplyr)
+
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE)
+
+rapport_import <- list(
+  lignes = nrow(ventes),
+  colonnes = ncol(ventes),
+  na_total = sum(is.na(ventes)),
+  periode = range(ventes$date, na.rm = TRUE),
+  montant_moyen = mean(ventes$montant, na.rm = TRUE)
+)
+rapport_import
+```
+
+## Erreurs fréquentes
+
+| Symptôme | Cause | Remède |
+|----------|-------|--------|
+| Accents cassés | Mauvais encodage | `locale = locale(encoding = "UTF-8")` ou `fileEncoding` |
+| Une seule colonne | Mauvais séparateur | `read_csv2` (`;`) ou `delim` |
+| Dates en caractère | Parsing | `col_date()` ou `lubridate` |
+| Fichier introuvable | Mauvais `getwd()` | Projet RStudio + chemins relatifs |
+
+## Exercices
+
+### Niveau 1
+
+1. Importez `data/demographie.csv` et affichez `glimpse()`.
+2. Combien de feuilles dans `data/ventes.xlsx` ?
+
+### Niveau 2
+
+3. Importez `data/meteo_extrait.txt` et calculez la température moyenne.
+4. Exportez les 20 premières lignes de `ventes` vers `outputs/exo_ventes.csv`.
+
+### Niveau 3
+
+5. Écrivez une fonction `diagnostiquer(chemin)` qui retourne un tibble : `n_lignes`, `n_cols`, `n_na`, `n_doublons`.
+6. Comparez `read_csv("data/brut/ventes_brutes.csv")` et `read_csv("data/ventes.csv")` : que remarquez-vous sur les noms de colonnes ?
+
+## Corrections
+
+```{r corr-acq-1}
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE)
+glimpse(demo)
+```
+
+```{r corr-acq-2}
+excel_sheets("data/ventes.xlsx")
+```
+
+```{r corr-acq-3}
+m <- read_tsv("data/meteo_extrait.txt", show_col_types = FALSE)
+mean(m$temperature_c)
+```
+
+```{r corr-acq-4}
+write_csv(head(ventes, 20), "outputs/exo_ventes.csv")
+```
+
+```{r corr-acq-5}
+diagnostiquer <- function(chemin) {
+  x <- read_csv(chemin, show_col_types = FALSE)
+  tibble(
+    fichier = basename(chemin),
+    n_lignes = nrow(x),
+    n_cols = ncol(x),
+    n_na = sum(is.na(x)),
+    n_doublons = sum(duplicated(x))
+  )
+}
+diagnostiquer("data/ventes.csv")
+```
+
+## Points clés
+
+- Préférez **chemins relatifs** et fichiers dans `data/`.
+- Vérifiez toujours types, NA et dimensions après import.
+- CSV / Excel / texte couvrent 90 % des besoins débutants.
+- Bases et API suivent le même principe : connecter → lire → tabulariser.
+
+## Ressources
+
+- `vignette("readr")`, documentation readxl
+- @tidyverse
+
+## Suite
+
+@sec-preparation : nettoyer, transformer et joindre les données avec dplyr et tidyr.

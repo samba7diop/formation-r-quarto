@@ -1,0 +1,78 @@
+# Aide-mémoires {#sec-aide-memoire}
+
+## Manipulation de données (dplyr / tidyr)
+
+```r
+df |>
+  filter(condition) |>
+  select(col1, col2) |>
+  mutate(nouvelle = col1 * 2) |>
+  arrange(desc(nouvelle)) |>
+  group_by(categorie) |>
+  summarise(n = n(), moy = mean(nouvelle), .groups = "drop")
+
+left_join(a, b, by = "id")
+pivot_longer(df, cols = -id, names_to = "nom", values_to = "val")
+pivot_wider(df, names_from = nom, values_from = val)
+```
+
+## Import / export
+
+```r
+readr::read_csv("data/fichier.csv")
+readxl::read_excel("data/fichier.xlsx", sheet = 1)
+readr::write_csv(df, "outputs/sortie.csv")
+```
+
+## ggplot2
+
+```r
+ggplot(df, aes(x, y, color = g)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~g) +
+  labs(title = "...", x = "...", y = "...") +
+  theme_minimal()
+
+# Barres / hist / box
+geom_col() ; geom_bar() ; geom_histogram(bins = 20) ; geom_boxplot()
+ggsave("outputs/fig.png", width = 7, height = 4, dpi = 150)
+```
+
+## Statistiques
+
+```r
+summary(x); mean(x, na.rm = TRUE); median(x); sd(x); quantile(x)
+table(x); prop.table(table(x))
+cor(x, y); cor.test(x, y)
+t.test(y ~ g, data = df)
+mod <- lm(y ~ x1 + x2, data = df)
+summary(mod); broom::tidy(mod); broom::augment(mod)
+```
+
+## Quarto (CLI)
+
+```bash
+quarto preview
+quarto render --to html
+quarto render --to pdf
+quarto render --to docx
+quarto check
+```
+
+## Shiny (minimal)
+
+```r
+ui <- fluidPage(selectInput("v", "Var", names(mtcars)), plotOutput("p"))
+server <- function(input, output, session) {
+  output$p <- renderPlot({ hist(mtcars[[input$v]]) })
+}
+shinyApp(ui, server)
+```
+
+## stringr / lubridate (extraits)
+
+```r
+str_detect(x, "abc"); str_replace_all(x, " ", "_"); str_to_lower(x)
+ymd("2023-01-15"); year(d); month(d); floor_date(d, "month")
+```

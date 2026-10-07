@@ -1,0 +1,106 @@
+# Glossaire {#sec-glossaire}
+
+**Affectation**  
+Stockage d'une valeur dans un objet (`x <- 3`).
+
+**API**  
+Interface permettant d'échanger des données entre systèmes (souvent en JSON).
+
+**Boîte à moustaches**  
+Graphique résumant médiane, quartiles et extrêmes.
+
+**Causalité**  
+Relation de cause à effet ; non démontrée par la seule corrélation.
+
+**Chunk**  
+Bloc de code exécutable dans Quarto / R Markdown.
+
+**Corrélation**  
+Mesure d'association (souvent linéaire) entre deux variables quantitatives.
+
+**Data frame / tibble**  
+Tableau où chaque colonne est une variable et chaque ligne une observation.
+
+**dplyr**  
+Package de manipulation tabulaire (verbes `filter`, `mutate`, etc.).
+
+**Échantillon**  
+Sous-ensemble observé d'une population.
+
+**Écart-type**  
+Mesure de dispersion autour de la moyenne.
+
+**EDA**  
+*Exploratory Data Analysis* : exploration descriptive et visuelle.
+
+**Facteur**  
+Type R pour variables catégorielles (`factor`).
+
+**ggplot2**  
+Package de visualisation fondé sur une grammaire des graphiques.
+
+**IC (intervalle de confiance)**  
+Procédure quantifiant l'incertitude d'un estimateur.
+
+**Inférence**  
+Généralisation d'un échantillon vers une population.
+
+**Jointure**  
+Fusion de tables via une clé (`left_join`, etc.).
+
+**Markdown**  
+Langage de balisage léger pour le texte structuré.
+
+**Médiane**  
+Valeur centrale d'une série ordonnée.
+
+**NA**  
+Valeur manquante en R.
+
+**Outlier / aberrant**  
+Observation atypique ; à examiner avant traitement.
+
+**Package**  
+Extension installable de R.
+
+**p-valeur**  
+Sous \(H_0\), probabilité d'obtenir un résultat au moins aussi extrême.
+
+**Pipeline**  
+Enchaînement d'opérations (`|>` ou `%>%`).
+
+**Population**  
+Ensemble complet ciblé par l'étude.
+
+**Quarto**  
+Système de publication de documents reproductibles.
+
+**R^{2}**  
+Part de variance expliquée par un modèle linéaire.
+
+**Régression linéaire**  
+Modèle reliant une réponse quantitative à des prédicteurs.
+
+**Reproductibilité**  
+Capacité à refaire l'analyse et obtenir le même résultat.
+
+**Shiny**  
+Framework R d'applications web interactives.
+
+**Tidy data**  
+Données « ordonnées » : une variable = une colonne, une observation = une ligne.
+
+**tidyverse**  
+Collection de packages cohérents pour la science des données.
+
+**Variable qualitative**  
+Catégorie (sexe, région).
+
+**Variable quantitative**  
+Mesure numérique (âge, montant).
+
+**Vecteur**  
+Suite ordonnée de valeurs de même type en R.
+
+**YAML**  
+En-tête de configuration d'un document Quarto.

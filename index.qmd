@@ -1,0 +1,117 @@
+---
+title: "Analyse de données avec R et Quarto"
+---
+
+:::: {.livre-hero}
+::: {.livre-hero__media}
+:::
+
+::: {.livre-hero__content}
+::: {.livre-hero__brand}
+```{=html}
+R &amp; Quarto<span>Formation données</span>
+```
+:::
+
+::: {.livre-hero__lead}
+Des bases du langage jusqu'au rapport professionnel et à l'application Shiny — un parcours clair pour débuter l'analyse de données.
+:::
+
+::: {.livre-hero__cta}
+[Commencer le chapitre 1](chapters/01-introduction.qmd){.primary}
+[Voir le parcours](#parcours){.secondary}
+:::
+:::
+::::
+
+:::: {.livre-section}
+## Ce que vous saurez faire
+
+::: {.lead}
+À la fin de la formation, vous saurez prendre un jeu de données brut, le préparer, l'analyser, le visualiser et communiquer vos conclusions.
+:::
+
+1. Installer et utiliser R, RStudio et Quarto  
+2. Programmer avec les structures essentielles de R  
+3. Importer, nettoyer et transformer des données  
+4. Calculer et interpréter des statistiques descriptives  
+5. Créer des visualisations avec `ggplot2`  
+6. Appliquer corrélation, régression et tests de base  
+7. Produire des rapports HTML, PDF et Word  
+8. Construire une application interactive Shiny  
+9. Mener un projet d'analyse de bout en bout  
+::::
+
+:::: {.livre-section}
+## Pour qui
+
+::: {.lead}
+Aucune connaissance préalable de R n'est requise. Les notions statistiques sont introduites au fur et à mesure.
+:::
+
+- Débutants absolus en programmation  
+- Étudiants et universitaires  
+- Professionnels en montée en compétences data  
+- Curieux de statistique appliquée  
+::::
+
+:::: {.livre-section}
+## Parcours pédagogique {#parcours}
+
+::: {.lead}
+Onze parties progressives, de l'installation des outils jusqu'aux projets de synthèse.
+:::
+
+::: {.parcours-rail}
+1. **Introduction** — Comprendre le métier et installer les outils  
+2. **Fondamentaux de R** — Syntaxe, types et objets  
+3. **Acquisition** — Importer CSV, Excel et textes  
+4. **Préparation** — Nettoyer, joindre, transformer  
+5. **Statistiques descriptives** — Résumer et explorer  
+6. **Visualisation** — Communiquer par les graphiques  
+7. **Modélisation** — Inférence, tests et régression  
+8. **Rapports** — Documenter avec Quarto  
+9. **Shiny** — Applications interactives  
+10. **Projets** — Consolider par la pratique  
+11. **Annexes** — Glossaire et aide-mémoires  
+:::
+::::
+
+:::: {.livre-section}
+## Comment apprendre
+
+::: {.lead}
+Lisez, exécutez, modifiez. L'expérimentation vaut mieux que la lecture passive.
+:::
+
+1. Installez R, Quarto et les packages (voir le [README](README.md) et @sec-installation).  
+2. Suivez les chapitres dans l'ordre.  
+3. Exécutez le code dans RStudio.  
+4. Faites les exercices avant les corrections.  
+5. Réalisez les projets de la Partie X.  
+
+::: {.callout-tip}
+## Conseil
+Changez un paramètre, relancez, observez. C'est ainsi que les notions deviennent des réflexes.
+:::
+::::
+
+:::: {.livre-section}
+## Prérequis techniques
+
+::: {.lead}
+Un ordinateur suffit. Après l'installation initiale, le livre peut être reconstruit hors ligne.
+:::
+
+- Windows, macOS ou Linux  
+- Connexion Internet pour installer les packages  
+- Jeux de données fournis dans `data/` ou intégrés à R  
+::::
+
+:::: {.cta-bandeau}
+## Entrer dans le premier chapitre
+
+Ouvrez le parcours par l'introduction à l'analyse de données, puis installez vos outils.
+
+[Commencer →](chapters/01-introduction.qmd)
+::::

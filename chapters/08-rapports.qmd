@@ -1,0 +1,253 @@
+# Rapports et communication des résultats {#sec-rapports}
+
+## Introduction
+
+Une analyse n'a de valeur que si elle est **compréhensible** et **reproductible**. Quarto (et R Markdown) permettent de mêler texte, code R et résultats dans un même document source, puis de générer HTML, PDF ou Word.
+
+## Objectifs pédagogiques
+
+- Comprendre la logique des documents reproductibles
+- Structurer un fichier `.qmd`
+- Paramétrer l'exécution des blocs de code
+- Générer HTML, PDF et DOCX
+- Gérer bibliographie et mise en page
+- Comparer Quarto et R Markdown
+
+## Prérequis
+
+Avoir Quarto installé (@sec-installation). Notions de @sec-visualisation.
+
+## Documents reproductibles
+
+Principe : **une source → plusieurs formats**. Modifier les données ou le code, puis recompiler, met à jour tables et figures automatiquement.
+
+::: {.callout-note}
+## Vocabulaire
+- **YAML** : en-tête de métadonnées (`---` … `---`)
+- **Chunk / bloc** : segment de code exécutable
+- **Rendu (*render*)** : compilation vers HTML/PDF/DOCX
+- **Freeze / cache** : options pour accélérer les rebuilds
+:::
+
+## Présentation de Quarto
+
+Quarto unifie R, Python, Julia et Markdown. Ce livre est lui-même un projet Quarto de type `book` (voir `_quarto.yml`).
+
+## Structure d'un fichier `.qmd`
+
+```markdown
+---
+title: "Mon rapport"
+author: "Prénom Nom"
+format: html
+---
+
+## Introduction
+
+Texte en **Markdown**.
+
+```{{r}}
+summary(mtcars$mpg)
+```
+```
+
+## Titres, listes, tableaux et liens
+
+```markdown
+## Titre niveau 2
+- liste à puces
+1. liste numérotée
+[Lien interne](#sec-rapports)
+```
+
+Tableau Markdown :
+
+| Indicateur | Valeur |
+|------------|--------|
+| n | 32 |
+| moyenne | 20.09 |
+
+## Insertion de code R
+
+```{r chunk-demo}
+mean(mtcars$mpg)
+```
+
+Options utiles dans l'en-tête du bloc : `echo`, `eval`, `warning`, `message`, `fig.width`, `fig.height`, `label`.
+
+## Affichage des résultats et graphiques
+
+```{r rapport-plot, fig.cap="Consommation selon le poids (exemple de rapport)"}
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+```
+
+## Paramètres d'exécution
+
+| Option | Effet |
+|--------|-------|
+| `echo: false` | cache le code, montre le résultat |
+| `eval: false` | montre le code sans l'exécuter |
+| `include: false` | exécute mais n'affiche rien |
+| `warning: false` | masque les warnings |
+
+Dans `_quarto.yml`, la section `execute:` fixe les défauts du livre.
+
+## Génération HTML, PDF, DOCX
+
+Depuis le dossier `formation-r/` :
+
+```bash
+quarto preview                 # HTML interactif
+quarto render --to html
+quarto render --to docx
+quarto render --to pdf         # nécessite LaTeX / TinyTeX
+```
+
+### Dépendances par format
+
+| Format | Besoin principal |
+|--------|------------------|
+| HTML | Quarto + packages R utilisés |
+| DOCX | Quarto (pandoc inclus) |
+| PDF | Distribution LaTeX (TinyTeX recommandé) |
+
+```{r tinytex-check, eval=FALSE}
+tinytex::is_tinytex()
+# sinon : tinytex::install_tinytex()
+```
+
+::: {.callout-tip}
+## Vérifier sans tout rebuild
+`quarto render chapters/08-rapports.qmd --to html` pour tester un fichier isolé (selon configuration).
+:::
+
+## Personnalisation de la mise en page
+
+- HTML : `theme`, CSS (`styles/styles.css`), `toc`
+- PDF : `geometry`, `documentclass`, `colorlinks`
+- DOCX : `reference-doc` (modèle Word) si besoin
+
+## Bibliographie et citations
+
+Les références sont dans `resources/references.bib`. Citation : `[@r4ds]` → [@r4ds].
+
+## Rapports statistiques automatisés
+
+```{r auto-rapport}
+library(tidyverse)
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE) |>
+  filter(!is.na(region))
+
+resume <- ventes |>
+  summarise(
+    n = n(),
+    ca = sum(montant),
+    ca_moyen = mean(montant)
+  )
+resume
+```
+
+En produisant le document chaque semaine sur des données mises à jour, le texte descriptif et les chiffres restent synchronisés.
+
+## R Markdown vs Quarto
+
+| Aspect | R Markdown | Quarto |
+|--------|------------|--------|
+| Extension | `.Rmd` | `.qmd` (aussi `.Rmd`) |
+| Moteur | `rmarkdown` / pandoc | Quarto CLI |
+| Livres / sites | `bookdown` | intégré (`type: book`) |
+| Multi-langage | possible | natif |
+| Avenir Posit | maintenu | recommandé pour nouveaux projets |
+
+Les compétences Markdown + chunks se transfèrent presque à l'identique.
+
+## Publication et partage
+
+Options courantes :
+
+1. **Local** : ouvrir `outputs/book/index.html`
+2. **GitHub Pages** : publier le dossier HTML généré
+3. **Posit Connect / serveur interne** : déploiement organisationnel
+4. Envoyer le **DOCX** ou **PDF** par e-mail
+
+Exemple GitHub Pages (facultatif) :
+
+```bash
+git init
+git add .
+git commit -m "Livre formation R"
+# Configurer GitHub Actions ou pousser le site rendu
+```
+
+Ne publiez jamais de données personnelles non anonymisées.
+
+## Démonstration : mini-rapport inline
+
+```{r mini-rapport}
+ca_total <- sum(ventes$montant)
+n_ventes <- nrow(ventes)
+```
+
+Sur la période couverte, on observe **`r n_ventes`** ventes pour un CA total de **`r round(ca_total, 1)`**. Ce paragraphe se met à jour à chaque rendu.
+
+## Erreurs fréquentes
+
+| Problème | Solution |
+|----------|----------|
+| PDF échoue | Installer TinyTeX / MiKTeX |
+| Chemin fichier introuvable | `execute-dir: project` dans `_quarto.yml` |
+| Package manquant au render | Installer puis relancer |
+| YAML invalide | Indentation espaces, pas de tabs |
+
+## Exercices
+
+### Niveau 1
+
+1. Citez trois formats de sortie Quarto.
+2. À quoi sert `echo: false` ?
+
+### Niveau 2
+
+3. Créez un fichier `outputs/mon_premier_rapport.qmd` localement avec un titre, un chunk `summary(iris)` et rendez-le en HTML.
+4. Ajoutez une citation `[@tidyverse]` dans un paragraphe.
+
+### Niveau 3
+
+5. Automatisez un résumé CA par région (tableau + barres) dans un `.qmd`.
+6. Documentez pour un collègue les prérequis PDF vs HTML.
+
+## Corrections (indicatif)
+
+```{r corr-rapports, eval=FALSE}
+# Dans un .qmd :
+# ---
+# title: "CA par région"
+# format: html
+# ---
+# ```{r}
+# library(tidyverse)
+# ventes <- read_csv("data/ventes.csv", show_col_types = FALSE)
+# ventes |> count(region, wt = montant)
+# ```
+```
+
+Pour le PDF : installer TinyTeX, vérifier `quarto render --to pdf`, lire le log LaTeX en cas d'erreur.
+
+## Points clés
+
+- Une source Quarto = analyses + narration synchronisées.
+- HTML pour le web, DOCX pour relecture Word, PDF pour archivage imprimé.
+- La bibliographie et les options d'exécution professionnalisent le rendu.
+
+## Ressources
+
+- <https://quarto.org/docs/guide/>
+- @quarto, @r4ds
+
+## Suite
+
+@sec-shiny : rendre l'analyse interactive avec Shiny.

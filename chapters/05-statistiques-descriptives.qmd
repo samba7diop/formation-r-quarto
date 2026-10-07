@@ -1,0 +1,250 @@
+# Exploration et statistiques descriptives {#sec-descriptives}
+
+## Introduction
+
+Les **statistiques descriptives** résument un jeu de données sans encore généraliser à une population plus large. Elles répondent à : combien ? quelle tendance ? quelle dispersion ? quelles associations apparentes ?
+
+## Objectifs pédagogiques
+
+- Calculer effectifs, tendances centrales et dispersion
+- Lire quantiles, distributions et tableaux croisés
+- Comparer des groupes
+- Calculer et interpréter une corrélation (sans causalité)
+- Éviter les erreurs d'interprétation courantes
+
+## Prérequis
+
+@sec-preparation. Notions de moyenne vues en @sec-fondements-r.
+
+```{r setup-desc}
+library(tidyverse)
+ventes <- read_csv("data/ventes.csv", show_col_types = FALSE) |>
+  filter(!is.na(region), !is.na(quantite))
+demo <- read_csv("data/demographie.csv", show_col_types = FALSE) |>
+  filter(age >= 18, age <= 100, revenu_mensuel < 20000)
+```
+
+## Analyse exploratoire (EDA)
+
+L'EDA combine tableaux et graphiques pour comprendre la structure avant toute modélisation. Questions types : valeurs manquantes ? asymétrie ? groupes très différents ? relations linéaires ?
+
+::: {.callout-note}
+## Vocabulaire
+- **Tendance centrale** : moyenne, médiane, mode
+- **Dispersion** : étendue, variance, écart-type, IQR
+- **Distribution** : comment les valeurs se répartissent
+- **Corrélation** : association linéaire entre deux variables quantitatives
+:::
+
+## Effectifs et fréquences
+
+```{r effectifs}
+# Effectifs
+table(ventes$region)
+
+# Fréquences relatives
+prop.table(table(ventes$region)) |> round(3)
+
+ventes |> count(region, sort = TRUE) |>
+  mutate(freq = n / sum(n))
+```
+
+## Moyenne, médiane et mode
+
+```{r tendances}
+x <- ventes$montant
+mean(x)
+median(x)
+
+# Mode (valeur la plus fréquente) — pour variable discrète / qualitative
+mode_stat <- function(v) {
+  tb <- sort(table(v), decreasing = TRUE)
+  names(tb)[1]
+}
+mode_stat(ventes$produit)
+```
+
+**Interprétation** : si moyenne ≫ médiane, la distribution est souvent tirée vers la droite (quelques gros montants). La médiane est plus robuste aux extrêmes.
+
+```{r mean-vs-median}
+# Démonstration avec un extreme
+y <- c(10, 12, 11, 13, 12, 200)
+mean(y)
+median(y)
+```
+
+## Minimum, maximum, étendue
+
+```{r etendue}
+min(x); max(x); range(x)
+diff(range(x))  # étendue
+```
+
+## Quartiles et quantiles
+
+```{r quantiles}
+quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1))
+IQR(x)  # Q3 - Q1
+summary(x)
+```
+
+## Variance et écart-type
+
+```{r dispersion}
+var(x)   # variance
+sd(x)    # écart-type (même unité que x)
+```
+
+L'**écart-type** mesure l'écart typique à la moyenne. Plus il est grand, plus les observations sont dispersées.
+
+## Distribution des variables
+
+```{r distribution}
+# Aperçu numérique
+demo |>
+  summarise(
+    age_mean = mean(age),
+    age_sd = sd(age),
+    revenu_mean = mean(revenu_mensuel),
+    revenu_sd = sd(revenu_mensuel),
+    revenu_skew_approx = mean(revenu_mensuel) - median(revenu_mensuel)
+  )
+```
+
+Histogrammes et densités seront détaillés en @sec-visualisation.
+
+## Comparaison de groupes
+
+```{r groupes}
+ventes |>
+  group_by(region) |>
+  summarise(
+    n = n(),
+    ca_moyen = mean(montant),
+    ca_median = median(montant),
+    ca_sd = sd(montant),
+    .groups = "drop"
+  )
+```
+
+Comparez toujours **n**, tendance centrale **et** dispersion : deux moyennes proches avec des écarts-types très différents ne racontent pas la même histoire.
+
+## Tableaux croisés
+
+```{r croises}
+demo |>
+  count(sexe, niveau_etudes) |>
+  pivot_wider(names_from = sexe, values_from = n, values_fill = 0)
+
+# Avec proportions par ligne
+tab <- table(demo$sexe, demo$niveau_etudes)
+prop.table(tab, margin = 1) |> round(2)
+```
+
+## Corrélation entre variables
+
+```{r correlation}
+# Pearson (linéaire)
+cor(demo$age, demo$revenu_mensuel, use = "complete.obs")
+
+cor(mtcars$wt, mtcars$mpg)
+```
+
+```{r cor-matrice}
+mtcars |>
+  select(mpg, wt, hp, disp) |>
+  cor() |>
+  round(2)
+```
+
+::: {.callout-important}
+## Corrélation ≠ causalité
+Une corrélation forte indique une association statistique, **pas** qu'une variable cause l'autre. Un facteur tiers peut expliquer les deux.
+:::
+
+## Interprétation en langage courant
+
+Exemple : `cor(mtcars$wt, mtcars$mpg)` est négatif et marqué.
+
+**Résultat observé** : les voitures plus lourdes tendent à avoir une consommation en miles/gallon plus faible dans cet échantillon.
+
+**Interprétation prudente** : il existe une association linéaire négative entre poids et `mpg` dans `mtcars`. Cela ne prouve pas, à elle seule, le mécanisme causal (moteur, aérodynamique, etc.).
+
+## Limites et erreurs d'interprétation
+
+1. Décrire un échantillon n'équivaut pas à conclure sur toute une population (→ inférence, @sec-modelisation).
+2. La moyenne seule cache multimodalité et outliers.
+3. Des catégories déséquilibrées faussent les lectures de proportions.
+4. Corréler deux séries temporelles sans précaution peut créer des artefacts.
+5. Multiplier les tris jusqu'à trouver un résultat « significatif » (data dredging).
+
+## Démonstration complète
+
+```{r demo-desc}
+set.seed(2024)
+rapport <- list(
+  ca_total = sum(ventes$montant),
+  ca_moyen = mean(ventes$montant),
+  ca_median = median(ventes$montant),
+  top_produit = ventes |> count(produit, sort = TRUE) |> slice(1),
+  cor_qte_montant = cor(ventes$quantite, ventes$montant)
+)
+rapport
+```
+
+## Exercices
+
+### Niveau 1
+
+1. Calculez moyenne et médiane de `demo$age`.
+2. Affichez la table des effectifs de `niveau_etudes`.
+
+### Niveau 2
+
+3. Comparez le revenu moyen et médian par `sexe`.
+4. Calculez l'IQR de `montant` dans `ventes`.
+
+### Niveau 3
+
+5. Produisez un tableau région × produit avec le CA total (`sum(montant)`).
+6. Interprétez en une phrase `cor(mtcars$hp, mtcars$mpg)`.
+
+## Corrections
+
+```{r corr-desc-1}
+mean(demo$age); median(demo$age)
+demo |> count(niveau_etudes, sort = TRUE)
+```
+
+```{r corr-desc-3}
+demo |>
+  group_by(sexe) |>
+  summarise(moy = mean(revenu_mensuel), med = median(revenu_mensuel), .groups = "drop")
+IQR(ventes$montant)
+```
+
+```{r corr-desc-5}
+ventes |>
+  group_by(region, produit) |>
+  summarise(ca = sum(montant), .groups = "drop") |>
+  pivot_wider(names_from = produit, values_from = ca, values_fill = 0)
+```
+
+```{r corr-desc-6}
+cor(mtcars$hp, mtcars$mpg)
+# Interprétation : association linéaire négative — plus de chevaux, mpg souvent plus faible dans cet échantillon.
+```
+
+## Points clés
+
+- Décrire = résumer sans sur-interpréter.
+- Médiane et IQR sont robustes ; moyenne et écart-type sont sensibles aux extrêmes.
+- Toute corrélation demande une phrase de prudence sur la causalité.
+
+## Ressources
+
+- @ims, @r4ds (parties EDA)
+
+## Suite
+
+@sec-visualisation : donner forme visuelle à ces résumés avec ggplot2.

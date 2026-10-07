@@ -1,0 +1,227 @@
+# Applications interactives avec Shiny {#sec-shiny}
+
+## Introduction
+
+**Shiny** permet de créer des applications web interactives entièrement en R : l'utilisateur manipule des entrées (listes, curseurs, filtres) et voit statistiques et graphiques se mettre à jour. Ce chapitre couvre la structure UI/serveur, la réactivité, la validation, un mini tableau de bord et l'application fournie dans `shiny-app/`.
+
+## Objectifs pédagogiques
+
+- Expliquer l'architecture d'une app Shiny
+- Créer entrées, sorties et réactivité
+- Filtrer des données et afficher graphiques / tables
+- Valider les entrées et organiser le code
+- Lancer l'application locale du projet
+
+## Prérequis
+
+@sec-visualisation et bases de @sec-preparation. Package `shiny` installé.
+
+```{r shiny-check}
+shiny_ok <- requireNamespace("shiny", quietly = TRUE)
+message("shiny disponible : ", shiny_ok)
+```
+
+::: {.callout-warning}
+## Exécution dans le livre
+Les applications Shiny se lancent dans une session interactive. Les chunks ci-dessous sont surtout **illustratifs** (`eval=FALSE`) ; utilisez `shiny-app/app.R` pour tester réellement.
+:::
+
+## Présentation de Shiny
+
+Shiny = interface (HTML/CSS/JS générés) + logique R. Idéal pour explorateurs de données, calculateurs et tableaux de bord internes.
+
+## Structure d'une application
+
+Deux styles :
+
+1. Fichiers `ui.R` + `server.R`
+2. Fichier unique `app.R` (recommandé pour débuter)
+
+```{r structure-shiny, eval=FALSE}
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Titre"),
+  sidebarLayout(
+    sidebarPanel(/* entrées */),
+    mainPanel(/* sorties */)
+  )
+)
+
+server <- function(input, output, session) {
+  # logique
+}
+
+shinyApp(ui, server)
+```
+
+## Interface utilisateur et serveur
+
+- **UI** : ce que l'utilisateur voit et manipule (`inputId`)
+- **Serveur** : calcule `output` à partir de `input` via des fonctions `render*`
+
+## Entrées utilisateur
+
+| Fonction | Usage |
+|----------|--------|
+| `selectInput` | liste déroulante |
+| `sliderInput` | curseur numérique |
+| `checkboxInput` | case à cocher |
+| `dateRangeInput` | période |
+| `textInput` | texte libre |
+
+## Sorties
+
+| `render*` | `*Output` |
+|-----------|-----------|
+| `renderPlot` | `plotOutput` |
+| `renderTable` / `renderDataTable` | `tableOutput` / `dataTableOutput` |
+| `renderText` / `renderPrint` | `textOutput` / `verbatimTextOutput` |
+
+## Réactivité
+
+```{r reactivite, eval=FALSE}
+donnees_filtrees <- reactive({
+  req(input$region)
+  ventes |> filter(region == input$region)
+})
+
+output$resume <- renderPrint({
+  summary(donnees_filtrees()$montant)
+})
+```
+
+- `reactive()` : expression mise en cache, recalculée si dépendances changent
+- `req()` : attend qu'une entrée soit disponible
+- `observe()` / `observeEvent()` : effets de bord (pas de valeur de retour)
+
+## Filtres et graphiques interactifs
+
+Voir l'application complète ci-dessous : choix du jeu de données, filtre, histogramme et résumé.
+
+## Validation des entrées
+
+```{r validate-ex, eval=FALSE}
+output$plot <- renderPlot({
+  validate(
+    need(input$variable != "", "Choisissez une variable")
+  )
+  # ...
+})
+```
+
+## Organisation du code
+
+```text
+shiny-app/
+├── app.R           # UI + server
+├── R/              # fonctions auxiliaires (optionnel)
+└── data/           # ou accès à ../data
+```
+
+Pour la production : modules Shiny, tests, logs.
+
+## Lancement local
+
+```{r launch, eval=FALSE}
+shiny::runApp("shiny-app")
+# ou ouvrir app.R dans RStudio et cliquer Run App
+```
+
+```bash
+Rscript -e "shiny::runApp('shiny-app', launch.browser = TRUE)"
+```
+
+## Tableau de bord simple — application du projet
+
+L'application `shiny-app/app.R` permet de :
+
+1. Choisir un jeu : ventes, démographie ou météo
+2. Filtrer une catégorie (région / ville / mois)
+3. Afficher résumé numérique + histogramme + aperçu tabulaire
+
+## Introduction au déploiement
+
+| Cible | Idée |
+|-------|------|
+| Local | `runApp` |
+| shinyapps.io | compte Posit, `rsconnect::deployApp` |
+| Serveur Docker / Posit Connect | IT interne |
+
+Ne déployez pas de données sensibles sans contrôle d'accès.
+
+## Exemple minimal exécutable (concept)
+
+```{r mini-app, eval=FALSE}
+library(shiny)
+library(ggplot2)
+
+ui <- fluidPage(
+  titlePanel("Histo mtcars"),
+  selectInput("var", "Variable", choices = names(mtcars)),
+  plotOutput("hist")
+)
+
+server <- function(input, output, session) {
+  output$hist <- renderPlot({
+    ggplot(mtcars, aes(.data[[input$var]])) +
+      geom_histogram(bins = 15, fill = "#1a5276", color = "white") +
+      theme_minimal()
+  })
+}
+
+# shinyApp(ui, server)
+```
+
+## Erreurs fréquentes
+
+| Erreur | Cause | Remède |
+|--------|-------|--------|
+| Sortie vide | Oubli de `output$` / `render*` | Vérifier les IDs identiques UI/serveur |
+| Non-réactif | Lecture `input` hors reactive | Envelopper dans `reactive`/`render` |
+| Chemin data | Mauvais working directory | Chemins relatifs à `app.R` |
+| App qui ne démarre pas | Package manquant | `install.packages("shiny")` |
+
+## Exercices
+
+### Niveau 1
+
+1. Quelle différence entre UI et serveur ?
+2. Citez deux `*Input` et deux `*Output`.
+
+### Niveau 2
+
+3. Lancez `shiny-app` et changez de jeu de données.
+4. Modifiez le nombre de bins de l'histogramme (ajoutez un `sliderInput`).
+
+### Niveau 3
+
+5. Ajoutez un `downloadButton` pour exporter le tableau filtré en CSV.
+6. Factorisez le code de filtrage dans une fonction `filtrer_donnees()`.
+
+## Corrections (indications)
+
+```{r corr-shiny, eval=FALSE}
+# sliderInput("bins", "Nombre de classes", min = 5, max = 40, value = 15)
+# geom_histogram(bins = input$bins, ...)
+
+# downloadHandler(
+#   filename = "extrait.csv",
+#   content = function(file) readr::write_csv(donnees_filtrees(), file)
+# )
+```
+
+## Points clés
+
+- Shiny = UI + serveur + réactivité.
+- Gardez les calculs dans des `reactive` clairs.
+- Testez localement avant tout déploiement.
+
+## Ressources
+
+- @shiny — <https://shiny.posit.co/>
+- Application du livre : dossier `shiny-app/`
+
+## Suite
+
+@sec-projets : projets de synthèse et évaluations.
