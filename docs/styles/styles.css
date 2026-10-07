@@ -1,0 +1,318 @@
+/* Complément HTML — chemins relatifs au site rendu */
+
+:root {
+  --ink: #0A2E2F;
+  --teal: #0F3D3E;
+  --teal-mid: #1A6B5C;
+  --amber: #E8A838;
+  --mist: #F4F8F6;
+  --paper: #F7FAF8;
+  --ink-soft: #3A5253;
+  --line: #D5E3DE;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Sora", "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Masquer titre Quarto + cover auto sur l'accueil (hero = marque) */
+body:has(.livre-hero) #title-block-header,
+#title-block-header:has(+ .livre-hero),
+body:has(.livre-hero) .quarto-cover-image,
+.quarto-cover-image {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+body:has(.livre-hero) #quarto-document-content > .livre-hero {
+  margin-top: -0.5rem;
+}
+
+body:has(.livre-hero) .header-section-number {
+  display: none;
+}
+
+body:has(.livre-hero) #quarto-document-content > .livre-section > h2 {
+  border-bottom: none !important;
+}
+
+.livre-hero__brand p {
+  margin: 0;
+}
+
+.livre-hero__cta p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin: 0;
+}
+
+.livre-hero {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  min-height: min(92vh, 780px);
+  display: grid;
+  align-items: end;
+  color: #F2F7F5;
+  overflow: hidden;
+  background: #0A2E2F;
+  margin-bottom: 2.5rem;
+}
+
+.livre-hero__media {
+  position: absolute;
+  inset: 0;
+  background-color: #0A2E2F;
+  background-image:
+    linear-gradient(105deg, rgba(10, 46, 47, 0.92) 0%, rgba(10, 46, 47, 0.52) 50%, rgba(10, 46, 47, 0.22) 100%),
+    url("../resources/images/hero-data.svg"), url("hero-data.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: hero-drift 18s var(--ease-out) infinite alternate;
+}
+
+.livre-hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(46rem, calc(100% - 2rem));
+  padding: clamp(3rem, 8vh, 5.5rem) clamp(1.25rem, 5vw, 3rem) clamp(2.5rem, 6vh, 4rem);
+  margin-left: max(1rem, calc(50vw - 23rem - 6vw));
+}
+
+.livre-hero__brand {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem;
+  max-width: 14ch;
+  animation: rise-in 0.9s var(--ease-out) both;
+}
+
+.livre-hero__brand span {
+  display: block;
+  color: var(--amber);
+}
+
+.livre-hero__content > p,
+.livre-hero__lead {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  max-width: 36ch;
+  margin: 0 0 1.75rem;
+  color: rgba(242, 247, 245, 0.92);
+  animation: rise-in 0.9s 0.12s var(--ease-out) both;
+}
+
+.livre-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  animation: rise-in 0.9s 0.22s var(--ease-out) both;
+}
+
+.livre-hero__cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.35rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.2s var(--ease-out), background 0.2s ease, border-color 0.2s ease;
+}
+
+.livre-hero__cta a:hover {
+  transform: translateY(-2px);
+}
+
+.livre-hero__cta a.primary {
+  background: var(--amber);
+  color: #0A2E2F !important;
+}
+
+.livre-hero__cta a.primary:hover {
+  background: #f0b84a;
+  color: #0A2E2F !important;
+}
+
+.livre-hero__cta a.secondary {
+  background: transparent;
+  color: #F2F7F5 !important;
+  border: 1.5px solid rgba(242, 247, 245, 0.45);
+}
+
+.livre-hero__cta a.secondary:hover {
+  border-color: #F2F7F5;
+  color: #fff !important;
+}
+
+.livre-section {
+  margin: 3rem 0 2.25rem;
+}
+
+.livre-section h2 {
+  border-bottom: none !important;
+  font-size: 1.65rem;
+  margin-bottom: 0.55rem;
+}
+
+.livre-section .lead,
+.livre-section > p:first-of-type {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  max-width: 40rem;
+}
+
+.parcours-rail {
+  display: grid;
+  border-left: 2px solid var(--line);
+  margin: 1.35rem 0 0 0.35rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.parcours-rail li,
+.parcours-rail > p,
+.parcours-rail {
+  list-style: none;
+}
+
+/* Quarto peut rendre la liste en ol/ul */
+ol.parcours-rail,
+ul.parcours-rail,
+.parcours-rail ol,
+.parcours-rail ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.35rem 0 0 0.35rem;
+  border-left: 2px solid var(--line);
+}
+
+.parcours-rail li,
+ol.parcours-rail li,
+ul.parcours-rail li {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 1.4rem;
+}
+
+.parcours-rail li::before,
+ol.parcours-rail li::before,
+ul.parcours-rail li::before {
+  content: "";
+  position: absolute;
+  left: -0.4rem;
+  top: 1.2rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 4px var(--paper);
+}
+
+.parcours-rail li:nth-child(3n)::before,
+ol.parcours-rail li:nth-child(3n)::before {
+  background: var(--amber);
+}
+
+.parcours-rail strong {
+  font-family: var(--font-display);
+  color: var(--teal);
+  font-weight: 650;
+  display: inline;
+}
+
+.cta-bandeau {
+  margin: 3rem 0 1.5rem;
+  padding: 1.75rem 1.5rem;
+  background: linear-gradient(120deg, #0F3D3E, #1A6B5C);
+  color: #F2F7F5;
+  border-radius: 0.55rem;
+}
+
+.cta-bandeau h2 {
+  color: #F2F7F5 !important;
+  border: none !important;
+  margin: 0 0 0.5rem !important;
+  font-size: 1.55rem;
+}
+
+.cta-bandeau p {
+  margin: 0 0 1.1rem;
+  color: rgba(242, 247, 245, 0.92);
+}
+
+.cta-bandeau a {
+  color: #0A2E2F !important;
+  background: var(--amber);
+  text-decoration: none !important;
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+}
+
+.cta-bandeau a:hover {
+  background: #f0b84a;
+}
+
+.points-cles {
+  background: linear-gradient(90deg, rgba(15, 61, 62, 0.07), transparent);
+  border-left: 4px solid var(--teal);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.45rem 0.45rem 0;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-1.2%, -0.8%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .livre-hero__media,
+  .livre-hero__brand,
+  .livre-hero__content > p,
+  .livre-hero__cta {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .livre-hero {
+    min-height: 88vh;
+  }
+
+  .livre-hero__content {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  .livre-hero__brand {
+    max-width: none;
+  }
+}

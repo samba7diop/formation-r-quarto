@@ -1,7 +1,7 @@
 # Sorties générées (le site publié part sur la branche gh-pages)
 /outputs/
 /_book/
-/docs/
+# /docs/  (publi� sur GitHub Pages)
 
 # Cache Quarto local (garder _freeze pour accélérer le CI)
 /.quarto/
