@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Nettoyage et préparation des données – Analyse de données avec R et Quarto</title>
+<title>6&nbsp; Nettoyage et préparation des données – Analyse de données avec R et Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
@@ -130,7 +130,7 @@ div.csl-indent {
 <meta name="theme-color" content="#0A2E2F">
 
 
-<link rel="stylesheet" href="../styles/styles.css">
+<link rel="stylesheet" href="../styles/book-design.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -142,8 +142,8 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html">Partie IV — Préparation des données</a></li><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html">Partie IV — Préparation des données</a></li><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -157,7 +157,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Analyse de données avec R et Quarto</a>
+      <a href="../">Analyse de données avec R et Quarto</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -172,219 +172,219 @@ div.csl-indent {
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
-    <div class="sidebar-menu-container">
+    <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/00-page-de-garde.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyse de données avec R et Quarto</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Page de garde</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Votre parcours commence ici</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Votre parcours commence ici</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie I — Introduction</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/01-introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction à l’analyse de données</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction à l’analyse de données</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie II — Fondamentaux de R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/02-fondements-r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Les fondamentaux de R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Les fondamentaux de R</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie III — Acquisition des données</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/03-acquisition-donnees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Acquisition et importation des données</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Acquisition et importation des données</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie IV — Préparation des données</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/04-preparation-donnees.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie V — Statistiques descriptives</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/05-statistiques-descriptives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exploration et statistiques descriptives</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploration et statistiques descriptives</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie VI — Visualisation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/06-visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualisation des données</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualisation des données</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie VII — Modélisation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/07-modelisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Analyse statistique et modélisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyse statistique et modélisation</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie VIII — Rapports</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/08-rapports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Rapports et communication des résultats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Rapports et communication des résultats</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie IX — Applications Shiny</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/09-shiny.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Applications interactives avec Shiny</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Applications interactives avec Shiny</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie X — Exercices et projets</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/10-projets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Projets de synthèse et évaluations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projets de synthèse et évaluations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../exercices/exercices-synthese.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercices de synthèse transversaux</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercices de synthèse transversaux</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../exercices/corrections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Corrections des exercices de synthèse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Corrections des exercices de synthèse</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
  <span class="menu-text">Partie XI — Références et annexes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/11-annexes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Références, annexes et navigation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Références, annexes et navigation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Références bibliographiques</span></a>
   </div>
@@ -392,22 +392,22 @@ div.csl-indent {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a>
+          </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/A-glossaire.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Glossaire</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/B-aide-memoire.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Aide-mémoires</span></span></a>
   </div>
@@ -422,67 +422,67 @@ div.csl-indent {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sommaire</h2>
-
+   
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
-  <li><a href="#objectifs-pédagogiques" id="toc-objectifs-pédagogiques" class="nav-link" data-scroll-target="#objectifs-pédagogiques"><span class="header-section-number">5.2</span> Objectifs pédagogiques</a></li>
-  <li><a href="#prérequis" id="toc-prérequis" class="nav-link" data-scroll-target="#prérequis"><span class="header-section-number">5.3</span> Prérequis</a></li>
-  <li><a href="#qualité-des-données" id="toc-qualité-des-données" class="nav-link" data-scroll-target="#qualité-des-données"><span class="header-section-number">5.4</span> Qualité des données</a></li>
-  <li><a href="#examiner-la-structure" id="toc-examiner-la-structure" class="nav-link" data-scroll-target="#examiner-la-structure"><span class="header-section-number">5.5</span> Examiner la structure</a></li>
-  <li><a href="#renommer-sélectionner-filtrer-trier" id="toc-renommer-sélectionner-filtrer-trier" class="nav-link" data-scroll-target="#renommer-sélectionner-filtrer-trier"><span class="header-section-number">5.6</span> Renommer, sélectionner, filtrer, trier</a></li>
-  <li><a href="#créer-des-variables-et-modifier-les-types" id="toc-créer-des-variables-et-modifier-les-types" class="nav-link" data-scroll-target="#créer-des-variables-et-modifier-les-types"><span class="header-section-number">5.7</span> Créer des variables et modifier les types</a></li>
-  <li><a href="#traiter-les-valeurs-manquantes" id="toc-traiter-les-valeurs-manquantes" class="nav-link" data-scroll-target="#traiter-les-valeurs-manquantes"><span class="header-section-number">5.8</span> Traiter les valeurs manquantes</a></li>
-  <li><a href="#doublons" id="toc-doublons" class="nav-link" data-scroll-target="#doublons"><span class="header-section-number">5.9</span> Doublons</a></li>
-  <li><a href="#valeurs-aberrantes" id="toc-valeurs-aberrantes" class="nav-link" data-scroll-target="#valeurs-aberrantes"><span class="header-section-number">5.10</span> Valeurs aberrantes</a></li>
-  <li><a href="#chaînes-de-caractères-stringr" id="toc-chaînes-de-caractères-stringr" class="nav-link" data-scroll-target="#chaînes-de-caractères-stringr"><span class="header-section-number">5.11</span> Chaînes de caractères (<code>stringr</code>)</a></li>
-  <li><a href="#dates-lubridate" id="toc-dates-lubridate" class="nav-link" data-scroll-target="#dates-lubridate"><span class="header-section-number">5.12</span> Dates (<code>lubridate</code>)</a></li>
-  <li><a href="#regrouper-et-résumer" id="toc-regrouper-et-résumer" class="nav-link" data-scroll-target="#regrouper-et-résumer"><span class="header-section-number">5.13</span> Regrouper et résumer</a></li>
-  <li><a href="#fusionner-plusieurs-tables" id="toc-fusionner-plusieurs-tables" class="nav-link" data-scroll-target="#fusionner-plusieurs-tables"><span class="header-section-number">5.14</span> Fusionner plusieurs tables</a></li>
-  <li><a href="#large-long-tidyr" id="toc-large-long-tidyr" class="nav-link" data-scroll-target="#large-long-tidyr"><span class="header-section-number">5.15</span> Large ↔︎ long (<code>tidyr</code>)</a></li>
-  <li><a href="#pipeline-de-préparation-reproductible" id="toc-pipeline-de-préparation-reproductible" class="nav-link" data-scroll-target="#pipeline-de-préparation-reproductible"><span class="header-section-number">5.16</span> Pipeline de préparation reproductible</a></li>
-  <li><a href="#démonstration-complète" id="toc-démonstration-complète" class="nav-link" data-scroll-target="#démonstration-complète"><span class="header-section-number">5.17</span> Démonstration complète</a></li>
-  <li><a href="#erreurs-fréquentes" id="toc-erreurs-fréquentes" class="nav-link" data-scroll-target="#erreurs-fréquentes"><span class="header-section-number">5.18</span> Erreurs fréquentes</a></li>
-  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices"><span class="header-section-number">5.19</span> Exercices</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
+  <li><a href="#objectifs-pédagogiques" id="toc-objectifs-pédagogiques" class="nav-link" data-scroll-target="#objectifs-pédagogiques"><span class="header-section-number">6.2</span> Objectifs pédagogiques</a></li>
+  <li><a href="#prérequis" id="toc-prérequis" class="nav-link" data-scroll-target="#prérequis"><span class="header-section-number">6.3</span> Prérequis</a></li>
+  <li><a href="#qualité-des-données" id="toc-qualité-des-données" class="nav-link" data-scroll-target="#qualité-des-données"><span class="header-section-number">6.4</span> Qualité des données</a></li>
+  <li><a href="#examiner-la-structure" id="toc-examiner-la-structure" class="nav-link" data-scroll-target="#examiner-la-structure"><span class="header-section-number">6.5</span> Examiner la structure</a></li>
+  <li><a href="#renommer-sélectionner-filtrer-trier" id="toc-renommer-sélectionner-filtrer-trier" class="nav-link" data-scroll-target="#renommer-sélectionner-filtrer-trier"><span class="header-section-number">6.6</span> Renommer, sélectionner, filtrer, trier</a></li>
+  <li><a href="#créer-des-variables-et-modifier-les-types" id="toc-créer-des-variables-et-modifier-les-types" class="nav-link" data-scroll-target="#créer-des-variables-et-modifier-les-types"><span class="header-section-number">6.7</span> Créer des variables et modifier les types</a></li>
+  <li><a href="#traiter-les-valeurs-manquantes" id="toc-traiter-les-valeurs-manquantes" class="nav-link" data-scroll-target="#traiter-les-valeurs-manquantes"><span class="header-section-number">6.8</span> Traiter les valeurs manquantes</a></li>
+  <li><a href="#doublons" id="toc-doublons" class="nav-link" data-scroll-target="#doublons"><span class="header-section-number">6.9</span> Doublons</a></li>
+  <li><a href="#valeurs-aberrantes" id="toc-valeurs-aberrantes" class="nav-link" data-scroll-target="#valeurs-aberrantes"><span class="header-section-number">6.10</span> Valeurs aberrantes</a></li>
+  <li><a href="#chaînes-de-caractères-stringr" id="toc-chaînes-de-caractères-stringr" class="nav-link" data-scroll-target="#chaînes-de-caractères-stringr"><span class="header-section-number">6.11</span> Chaînes de caractères (<code>stringr</code>)</a></li>
+  <li><a href="#dates-lubridate" id="toc-dates-lubridate" class="nav-link" data-scroll-target="#dates-lubridate"><span class="header-section-number">6.12</span> Dates (<code>lubridate</code>)</a></li>
+  <li><a href="#regrouper-et-résumer" id="toc-regrouper-et-résumer" class="nav-link" data-scroll-target="#regrouper-et-résumer"><span class="header-section-number">6.13</span> Regrouper et résumer</a></li>
+  <li><a href="#fusionner-plusieurs-tables" id="toc-fusionner-plusieurs-tables" class="nav-link" data-scroll-target="#fusionner-plusieurs-tables"><span class="header-section-number">6.14</span> Fusionner plusieurs tables</a></li>
+  <li><a href="#large-long-tidyr" id="toc-large-long-tidyr" class="nav-link" data-scroll-target="#large-long-tidyr"><span class="header-section-number">6.15</span> Large ↔︎ long (<code>tidyr</code>)</a></li>
+  <li><a href="#pipeline-de-préparation-reproductible" id="toc-pipeline-de-préparation-reproductible" class="nav-link" data-scroll-target="#pipeline-de-préparation-reproductible"><span class="header-section-number">6.16</span> Pipeline de préparation reproductible</a></li>
+  <li><a href="#démonstration-complète" id="toc-démonstration-complète" class="nav-link" data-scroll-target="#démonstration-complète"><span class="header-section-number">6.17</span> Démonstration complète</a></li>
+  <li><a href="#erreurs-fréquentes" id="toc-erreurs-fréquentes" class="nav-link" data-scroll-target="#erreurs-fréquentes"><span class="header-section-number">6.18</span> Erreurs fréquentes</a></li>
+  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices"><span class="header-section-number">6.19</span> Exercices</a>
   <ul class="collapse">
-  <li><a href="#niveau-1" id="toc-niveau-1" class="nav-link" data-scroll-target="#niveau-1"><span class="header-section-number">5.19.1</span> Niveau 1</a></li>
-  <li><a href="#niveau-2" id="toc-niveau-2" class="nav-link" data-scroll-target="#niveau-2"><span class="header-section-number">5.19.2</span> Niveau 2</a></li>
-  <li><a href="#niveau-3" id="toc-niveau-3" class="nav-link" data-scroll-target="#niveau-3"><span class="header-section-number">5.19.3</span> Niveau 3</a></li>
+  <li><a href="#niveau-1" id="toc-niveau-1" class="nav-link" data-scroll-target="#niveau-1"><span class="header-section-number">6.19.1</span> Niveau 1</a></li>
+  <li><a href="#niveau-2" id="toc-niveau-2" class="nav-link" data-scroll-target="#niveau-2"><span class="header-section-number">6.19.2</span> Niveau 2</a></li>
+  <li><a href="#niveau-3" id="toc-niveau-3" class="nav-link" data-scroll-target="#niveau-3"><span class="header-section-number">6.19.3</span> Niveau 3</a></li>
   </ul></li>
-  <li><a href="#corrections" id="toc-corrections" class="nav-link" data-scroll-target="#corrections"><span class="header-section-number">5.20</span> Corrections</a></li>
-  <li><a href="#points-clés" id="toc-points-clés" class="nav-link" data-scroll-target="#points-clés"><span class="header-section-number">5.21</span> Points clés</a></li>
-  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources"><span class="header-section-number">5.22</span> Ressources</a></li>
-  <li><a href="#suite" id="toc-suite" class="nav-link" data-scroll-target="#suite"><span class="header-section-number">5.23</span> Suite</a></li>
+  <li><a href="#corrections" id="toc-corrections" class="nav-link" data-scroll-target="#corrections"><span class="header-section-number">6.20</span> Corrections</a></li>
+  <li><a href="#points-clés" id="toc-points-clés" class="nav-link" data-scroll-target="#points-clés"><span class="header-section-number">6.21</span> Points clés</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources"><span class="header-section-number">6.22</span> Ressources</a></li>
+  <li><a href="#suite" id="toc-suite" class="nav-link" data-scroll-target="#suite"><span class="header-section-number">6.23</span> Suite</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html">Partie IV — Préparation des données</a></li><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html">Partie IV — Préparation des données</a></li><li class="breadcrumb-item"><a href="../chapters/04-preparation-donnees.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="sec-preparation" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-preparation" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Nettoyage et préparation des données</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-
-
-
+    
+  
+    
   </div>
-
+  
 
 
 </header>
 
 
-<section id="introduction" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
 <p>Des données mal préparées produisent des analyses trompeuses. Ce chapitre enseigne le <strong>nettoyage</strong> et la <strong>transformation</strong> avec <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code> et <code>lubridate</code> : renommer, filtrer, créer des variables, traiter les NA, détecter doublons et aberrants, joindre des tables et pivoter.</p>
 </section>
-<section id="objectifs-pédagogiques" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="objectifs-pédagogiques"><span class="header-section-number">5.2</span> Objectifs pédagogiques</h2>
+<section id="objectifs-pédagogiques" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="objectifs-pédagogiques"><span class="header-section-number">6.2</span> Objectifs pédagogiques</h2>
 <ul>
 <li>Examiner et comprendre la structure d’un jeu de données</li>
 <li>Chaîner des verbes dplyr (<code>%&gt;%</code> / <code>|&gt;</code>)</li>
@@ -492,8 +492,8 @@ div.csl-indent {
 <li>Construire un pipeline reproductible</li>
 </ul>
 </section>
-<section id="prérequis" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="prérequis"><span class="header-section-number">5.3</span> Prérequis</h2>
+<section id="prérequis" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="prérequis"><span class="header-section-number">6.3</span> Prérequis</h2>
 <ol class="example" type="1">
 <li>Packages : <code>tidyverse</code>, <code>janitor</code> (utile), <code>lubridate</code>.</li>
 </ol>
@@ -507,8 +507,8 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="qualité-des-données" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="qualité-des-données"><span class="header-section-number">5.4</span> Qualité des données</h2>
+<section id="qualité-des-données" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="qualité-des-données"><span class="header-section-number">6.4</span> Qualité des données</h2>
 <p>Une bonne qualité implique : types corrects, noms cohérents, peu de NA injustifiés, pas de doublons involontaires, valeurs dans des plages plausibles, documentation des règles de nettoyage.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -524,8 +524,8 @@ Règle d’or
 </div>
 </div>
 </section>
-<section id="examiner-la-structure" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="examiner-la-structure"><span class="header-section-number">5.5</span> Examiner la structure</h2>
+<section id="examiner-la-structure" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="examiner-la-structure"><span class="header-section-number">6.5</span> Examiner la structure</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ventes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ventes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ventes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,8 +543,8 @@ Règle d’or
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>skim_lite <span class="ot">&lt;-</span> <span class="fu">summary</span>(ventes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="renommer-sélectionner-filtrer-trier" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="renommer-sélectionner-filtrer-trier"><span class="header-section-number">5.6</span> Renommer, sélectionner, filtrer, trier</h2>
+<section id="renommer-sélectionner-filtrer-trier" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="renommer-sélectionner-filtrer-trier"><span class="header-section-number">6.6</span> Renommer, sélectionner, filtrer, trier</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ventes_n <span class="ot">&lt;-</span> ventes <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ca =</span> montant) <span class="sc">|&gt;</span></span>
@@ -582,8 +582,8 @@ Vocabulaire dplyr
 </div>
 </div>
 </section>
-<section id="créer-des-variables-et-modifier-les-types" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="créer-des-variables-et-modifier-les-types"><span class="header-section-number">5.7</span> Créer des variables et modifier les types</h2>
+<section id="créer-des-variables-et-modifier-les-types" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="créer-des-variables-et-modifier-les-types"><span class="header-section-number">6.7</span> Créer des variables et modifier les types</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ventes2 <span class="ot">&lt;-</span> ventes <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -599,20 +599,20 @@ Vocabulaire dplyr
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ventes2<span class="sc">$</span>categorie_ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;
-#&gt;  gros moyen petit
+<pre><code>#&gt; 
+#&gt;  gros moyen petit 
 #&gt;   104    77    20</code></pre>
 </div>
 </div>
 </section>
-<section id="traiter-les-valeurs-manquantes" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="traiter-les-valeurs-manquantes"><span class="header-section-number">5.8</span> Traiter les valeurs manquantes</h2>
+<section id="traiter-les-valeurs-manquantes" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="traiter-les-valeurs-manquantes"><span class="header-section-number">6.8</span> Traiter les valeurs manquantes</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(ventes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;      id_vente          date        region       produit      quantite
-#&gt;             0             0             2             0             1
-#&gt; prix_unitaire       montant
+<pre><code>#&gt;      id_vente          date        region       produit      quantite 
+#&gt;             0             0             2             0             1 
+#&gt; prix_unitaire       montant 
 #&gt;             0             0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Options selon le contexte :</span></span>
@@ -639,8 +639,8 @@ Ne pas imputer « par réflexe »
 </div>
 </div>
 </section>
-<section id="doublons" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="doublons"><span class="header-section-number">5.9</span> Doublons</h2>
+<section id="doublons" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="doublons"><span class="header-section-number">6.9</span> Doublons</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(ventes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -653,8 +653,8 @@ Ne pas imputer « par réflexe »
 </div>
 </div>
 </section>
-<section id="valeurs-aberrantes" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="valeurs-aberrantes"><span class="header-section-number">5.10</span> Valeurs aberrantes</h2>
+<section id="valeurs-aberrantes" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="valeurs-aberrantes"><span class="header-section-number">6.10</span> Valeurs aberrantes</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>demo <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/demographie.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -665,7 +665,7 @@ Ne pas imputer « par réflexe »
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>bornes <span class="ot">&lt;-</span> <span class="fu">c</span>(Q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_age, Q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_age)</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>bornes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   25%   75%
+<pre><code>#&gt;   25%   75% 
 #&gt; -15.5 108.5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aberrants_age <span class="ot">&lt;-</span> demo <span class="sc">|&gt;</span> <span class="fu">filter</span>(age <span class="sc">&lt;</span> bornes[<span class="dv">1</span>] <span class="sc">|</span> age <span class="sc">&gt;</span> bornes[<span class="dv">2</span>])</span>
@@ -673,14 +673,14 @@ Ne pas imputer « par réflexe »
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 1 × 6
 #&gt;      id   age sexe  ville revenu_mensuel niveau_etudes
-#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        
 #&gt; 1     3   150 Femme Paris           1104 Bac</code></pre>
 </div>
 </div>
 <p>Les aberrants ne sont pas automatiquement des erreurs : un revenu très élevé peut être réel. <strong>Examinez</strong> avant de supprimer.</p>
 </section>
-<section id="chaînes-de-caractères-stringr" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="chaînes-de-caractères-stringr"><span class="header-section-number">5.11</span> Chaînes de caractères (<code>stringr</code>)</h2>
+<section id="chaînes-de-caractères-stringr" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="chaînes-de-caractères-stringr"><span class="header-section-number">6.11</span> Chaînes de caractères (<code>stringr</code>)</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>produits <span class="ot">&lt;-</span> ventes <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -692,16 +692,16 @@ Ne pas imputer « par réflexe »
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 4 × 3
 #&gt;   produit  produit_min commence_c
-#&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;lgl&gt;
-#&gt; 1 Cahier   cahier      TRUE
-#&gt; 2 Agenda   agenda      FALSE
-#&gt; 3 Stylo    stylo       FALSE
+#&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;lgl&gt;     
+#&gt; 1 Cahier   cahier      TRUE      
+#&gt; 2 Agenda   agenda      FALSE     
+#&gt; 3 Stylo    stylo       FALSE     
 #&gt; 4 Marqueur marqueur    FALSE</code></pre>
 </div>
 </div>
 </section>
-<section id="dates-lubridate" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="dates-lubridate"><span class="header-section-number">5.12</span> Dates (<code>lubridate</code>)</h2>
+<section id="dates-lubridate" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="dates-lubridate"><span class="header-section-number">6.12</span> Dates (<code>lubridate</code>)</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>meteo <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/meteo.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -714,15 +714,15 @@ Ne pas imputer « par réflexe »
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 3 × 3
 #&gt;   date       mois  jour_semaine
-#&gt;   &lt;date&gt;     &lt;ord&gt; &lt;ord&gt;
-#&gt; 1 2023-01-01 janv  "dim\\."
-#&gt; 2 2023-01-02 janv  "lun\\."
+#&gt;   &lt;date&gt;     &lt;ord&gt; &lt;ord&gt;       
+#&gt; 1 2023-01-01 janv  "dim\\."    
+#&gt; 2 2023-01-02 janv  "lun\\."    
 #&gt; 3 2023-01-03 janv  "mar\\."</code></pre>
 </div>
 </div>
 </section>
-<section id="regrouper-et-résumer" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="regrouper-et-résumer"><span class="header-section-number">5.13</span> Regrouper et résumer</h2>
+<section id="regrouper-et-résumer" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="regrouper-et-résumer"><span class="header-section-number">6.13</span> Regrouper et résumer</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ca_region <span class="ot">&lt;-</span> ventes <span class="sc">|&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(region)) <span class="sc">|&gt;</span></span>
@@ -746,8 +746,8 @@ Ne pas imputer « par réflexe »
 </div>
 </div>
 </section>
-<section id="fusionner-plusieurs-tables" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="fusionner-plusieurs-tables"><span class="header-section-number">5.14</span> Fusionner plusieurs tables</h2>
+<section id="fusionner-plusieurs-tables" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="fusionner-plusieurs-tables"><span class="header-section-number">6.14</span> Fusionner plusieurs tables</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>clients <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/clients.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>commandes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/commandes.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
@@ -758,8 +758,8 @@ Ne pas imputer « par réflexe »
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(commandes_enrichies, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   commande_id client_id montant date       nom       segment
-#&gt;   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;     &lt;chr&gt;
+#&gt;   commande_id client_id montant date       nom       segment    
+#&gt;   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;     &lt;chr&gt;      
 #&gt; 1 CMD001      C004         271. 2023-02-16 Client_4  Association
 #&gt; 2 CMD002      C028         286. 2023-09-11 Client_28 Association
 #&gt; 3 CMD003      C018         190. 2023-02-07 Client_18 Particulier</code></pre>
@@ -779,8 +779,8 @@ Ne pas imputer « par réflexe »
 </div>
 <p>Types de jointures : <code>left_join</code>, <code>inner_join</code>, <code>full_join</code>, <code>anti_join</code> (non appariés).</p>
 </section>
-<section id="large-long-tidyr" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="large-long-tidyr"><span class="header-section-number">5.15</span> Large ↔︎ long (<code>tidyr</code>)</h2>
+<section id="large-long-tidyr" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="large-long-tidyr"><span class="header-section-number">6.15</span> Large ↔︎ long (<code>tidyr</code>)</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple long → large</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ca_long <span class="ot">&lt;-</span> ca_region <span class="sc">|&gt;</span> <span class="fu">select</span>(region, ca_total)</span>
@@ -808,8 +808,8 @@ Ne pas imputer « par réflexe »
 </div>
 </div>
 </section>
-<section id="pipeline-de-préparation-reproductible" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="pipeline-de-préparation-reproductible"><span class="header-section-number">5.16</span> Pipeline de préparation reproductible</h2>
+<section id="pipeline-de-préparation-reproductible" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="pipeline-de-préparation-reproductible"><span class="header-section-number">6.16</span> Pipeline de préparation reproductible</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>preparer_ventes <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">chemin =</span> <span class="st">"data/ventes.csv"</span>) {</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(chemin, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
@@ -845,8 +845,8 @@ Ne pas imputer « par réflexe »
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(ventes_clean, <span class="st">"data/ventes_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="démonstration-complète" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="démonstration-complète"><span class="header-section-number">5.17</span> Démonstration complète</h2>
+<section id="démonstration-complète" class="level2" data-number="6.17">
+<h2 data-number="6.17" class="anchored" data-anchor-id="démonstration-complète"><span class="header-section-number">6.17</span> Démonstration complète</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>demo_clean <span class="ot">&lt;-</span> demo <span class="sc">|&gt;</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>, age <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
@@ -869,15 +869,15 @@ Ne pas imputer « par réflexe »
 #&gt;   ville         n age_moyen revenu_median
 #&gt;   &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;         &lt;dbl&gt;
 #&gt; 1 Lille        24      49.4         1994.
-#&gt; 2 Lyon         40      44.6         2289
+#&gt; 2 Lyon         40      44.6         2289 
 #&gt; 3 Marseille    34      49.1         2118.
-#&gt; 4 Paris        25      45.6         2338
+#&gt; 4 Paris        25      45.6         2338 
 #&gt; 5 Toulouse     26      45.4         2257</code></pre>
 </div>
 </div>
 </section>
-<section id="erreurs-fréquentes" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="erreurs-fréquentes"><span class="header-section-number">5.18</span> Erreurs fréquentes</h2>
+<section id="erreurs-fréquentes" class="level2" data-number="6.18">
+<h2 data-number="6.18" class="anchored" data-anchor-id="erreurs-fréquentes"><span class="header-section-number">6.18</span> Erreurs fréquentes</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 32%">
@@ -915,32 +915,32 @@ Ne pas imputer « par réflexe »
 </tbody>
 </table>
 </section>
-<section id="exercices" class="level2" data-number="5.19">
-<h2 data-number="5.19" class="anchored" data-anchor-id="exercices"><span class="header-section-number">5.19</span> Exercices</h2>
-<section id="niveau-1" class="level3" data-number="5.19.1">
-<h3 data-number="5.19.1" class="anchored" data-anchor-id="niveau-1"><span class="header-section-number">5.19.1</span> Niveau 1</h3>
+<section id="exercices" class="level2" data-number="6.19">
+<h2 data-number="6.19" class="anchored" data-anchor-id="exercices"><span class="header-section-number">6.19</span> Exercices</h2>
+<section id="niveau-1" class="level3" data-number="6.19.1">
+<h3 data-number="6.19.1" class="anchored" data-anchor-id="niveau-1"><span class="header-section-number">6.19.1</span> Niveau 1</h3>
 <ol type="1">
 <li>À partir de <code>ventes</code>, sélectionnez <code>produit</code> et <code>montant</code>, triez par montant décroissant.</li>
 <li>Comptez les NA de <code>region</code>.</li>
 </ol>
 </section>
-<section id="niveau-2" class="level3" data-number="5.19.2">
-<h3 data-number="5.19.2" class="anchored" data-anchor-id="niveau-2"><span class="header-section-number">5.19.2</span> Niveau 2</h3>
+<section id="niveau-2" class="level3" data-number="6.19.2">
+<h3 data-number="6.19.2" class="anchored" data-anchor-id="niveau-2"><span class="header-section-number">6.19.2</span> Niveau 2</h3>
 <ol start="3" type="1">
 <li>Calculez le CA total par <code>produit</code>.</li>
 <li>Joignez <code>commandes</code> et <code>clients</code> et calculez le montant moyen par <code>segment</code>.</li>
 </ol>
 </section>
-<section id="niveau-3" class="level3" data-number="5.19.3">
-<h3 data-number="5.19.3" class="anchored" data-anchor-id="niveau-3"><span class="header-section-number">5.19.3</span> Niveau 3</h3>
+<section id="niveau-3" class="level3" data-number="6.19.3">
+<h3 data-number="6.19.3" class="anchored" data-anchor-id="niveau-3"><span class="header-section-number">6.19.3</span> Niveau 3</h3>
 <ol start="5" type="1">
 <li>Nettoyez <code>data/brut/ventes_brutes.csv</code> : noms propres (<code>clean_names</code>), types, suppression doublons, filtre NA.</li>
 <li>Pour <code>demographie</code>, créez <code>tranche_age</code> (18–30, 31–50, 51+) et un résumé du revenu médian par tranche.</li>
 </ol>
 </section>
 </section>
-<section id="corrections" class="level2" data-number="5.20">
-<h2 data-number="5.20" class="anchored" data-anchor-id="corrections"><span class="header-section-number">5.20</span> Corrections</h2>
+<section id="corrections" class="level2" data-number="6.20">
+<h2 data-number="6.20" class="anchored" data-anchor-id="corrections"><span class="header-section-number">6.20</span> Corrections</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ventes <span class="sc">|&gt;</span> <span class="fu">select</span>(produit, montant) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(montant)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1025,24 +1025,24 @@ Ne pas imputer « par réflexe »
 </div>
 </div>
 </section>
-<section id="points-clés" class="level2" data-number="5.21">
-<h2 data-number="5.21" class="anchored" data-anchor-id="points-clés"><span class="header-section-number">5.21</span> Points clés</h2>
+<section id="points-clés" class="level2" data-number="6.21">
+<h2 data-number="6.21" class="anchored" data-anchor-id="points-clés"><span class="header-section-number">6.21</span> Points clés</h2>
 <ul>
 <li>Un pipeline clair bat une série de clics manuels.</li>
 <li>Chaque transformation doit être <strong>justifiée</strong> et <strong>vérifiable</strong>.</li>
 <li>Jointures et pivots sont au cœur de la mise en forme analytique.</li>
 </ul>
 </section>
-<section id="ressources" class="level2" data-number="5.22">
-<h2 data-number="5.22" class="anchored" data-anchor-id="ressources"><span class="header-section-number">5.22</span> Ressources</h2>
+<section id="ressources" class="level2" data-number="6.22">
+<h2 data-number="6.22" class="anchored" data-anchor-id="ressources"><span class="header-section-number">6.22</span> Ressources</h2>
 <ul>
 <li><span class="citation" data-cites="tidyverse">Wickham et al. (<a href="../references.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>, documentation dplyr / tidyr</li>
 <li>Package <code>janitor</code> pour les noms de colonnes</li>
 </ul>
 </section>
-<section id="suite" class="level2" data-number="5.23">
-<h2 data-number="5.23" class="anchored" data-anchor-id="suite"><span class="header-section-number">5.23</span> Suite</h2>
-<p><a href="05-statistiques-descriptives.html" class="quarto-xref"><span>Chapter 6</span></a> : résumer et interpréter avec des statistiques descriptives.</p>
+<section id="suite" class="level2" data-number="6.23">
+<h2 data-number="6.23" class="anchored" data-anchor-id="suite"><span class="header-section-number">6.23</span> Suite</h2>
+<p><a href="05-statistiques-descriptives.html" class="quarto-xref"><span>Chapter 7</span></a> : résumer et interpréter avec des statistiques descriptives.</p>
 
 
 <!-- -->
@@ -1074,7 +1074,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       toggleBodyColorMode(bsSheetEl);
     }
   }
-  toggleBodyColorPrimary();
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1084,7 +1084,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {
+      if (clz.startsWith('code-annotation-')) {                     
         return true;
       }
     }
@@ -1104,11 +1104,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
       button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button,
-        { trigger: "manual",
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
           offset: [0, -8]});
-      tooltip.show();
+      tooltip.show();    
     }
     setTimeout(function() {
       if (tooltip) {
@@ -1181,7 +1181,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (codeDiv.classList.contains(fromCls)) {
           codeDiv.classList.remove(fromCls);
           codeDiv.classList.add(toCls);
-        }
+        } 
       }
       return false;
     }
@@ -1201,7 +1201,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-\tvar links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1240,7 +1240,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     if (onUntriggerFn) {
       config.onUntrigger = onUntriggerFn;
     }
-    window.tippy(el, config);
+    window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
@@ -1315,7 +1315,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     tippyHover(xref, undefined, function(instance) {
       instance.disable();
       let url = xref.getAttribute('href');
-      let hash = undefined;
+      let hash = undefined; 
       if (url.startsWith('#')) {
         hash = url;
       } else {
@@ -1343,7 +1343,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             if (note !== null) {
               const html = processXRef(id, note);
               instance.setContent(html);
-            }
+            } 
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -1367,7 +1367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             const html = processXRef(null, note);
             instance.setContent(html);
-          }
+          } 
         }).finally(() => {
           instance.enable();
           instance.show();
@@ -1407,7 +1407,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             height = bottom - top;
           }
           if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it
+            // cook up a div (if necessary) and position it 
             let div = window.document.getElementById("code-annotation-line-highlight");
             if (div === null) {
               div = window.document.createElement("div");
@@ -1531,12 +1531,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/03-acquisition-donnees.html" class="pagination-link" aria-label="Acquisition et importation des données">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Acquisition et importation des données</span></span>
-      </a>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Acquisition et importation des données</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/05-statistiques-descriptives.html" class="pagination-link" aria-label="Exploration et statistiques descriptives">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exploration et statistiques descriptives</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploration et statistiques descriptives</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">

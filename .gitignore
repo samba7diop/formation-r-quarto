@@ -41,3 +41,6 @@ renv/staging/
 # Fichiers temporaires générés par les rendus Quarto
 *_files/
 /tmp/
+
+# Bibliothèques Quarto temporaires à la racine du projet
+/site_libs/

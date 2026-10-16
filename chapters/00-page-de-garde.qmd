@@ -1,3 +1,11 @@
+---
+title: "Page de garde"
+title-block-style: none
+format:
+  html:
+    code-tools: false
+---
+
 ::: {.content-visible when-format="html"}
 ::: {.book-cover}
 ::: {.book-cover__copy}
@@ -6,7 +14,9 @@
 LE GUIDE PRATIQUE · ÉDITION 2026
 :::
 
-# Analyse de données avec R et Quarto {.unnumbered .unlisted}
+```{=html}
+<h1 class="book-cover__title">Analyse de données avec R et Quarto</h1>
+```
 
 ::: {.book-cover__subtitle}
 Des premières lignes de code à l’analyse, aux graphiques et aux rapports professionnels.

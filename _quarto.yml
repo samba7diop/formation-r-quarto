@@ -77,7 +77,7 @@ format:
     code-copy: true
     code-link: false
     highlight-style: monokai
-    css: styles/styles.css
+    css: styles/book-design.css
     link-external-newwindow: true
     smooth-scroll: true
     fig-cap-location: bottom
