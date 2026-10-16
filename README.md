@@ -184,7 +184,7 @@ Les améliorations pédagogiques (clarifications, exercices, corrections d'errat
 ## Licence
 
 Creative Commons Attribution 4.0 International (CC BY 4.0) — voir `LICENSE`.  
-Titulaire des droits : à compléter.
+Auteur et titulaire des droits : Samba Diop.
 
 ## Références officielles
 

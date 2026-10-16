@@ -4,9 +4,19 @@
     "href": "index.html",
     "title": "Analyse de données avec R et Quarto",
     "section": "",
-    "text": "0.1 Ce que vous saurez faire",
+    "text": "0.2 Ce que vous saurez faire",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#bienvenue-dans-le-livre",
+    "href": "index.html#bienvenue-dans-le-livre",
+    "title": "Analyse de données avec R et Quarto",
+    "section": "0.1 Bienvenue dans le livre",
+    "text": "0.1 Bienvenue dans le livre\nUn parcours complet pour apprendre à transformer des données brutes en analyses claires, graphiques utiles et rapports reproductibles.\n\nCommencer la formation Explorer le parcours",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
@@ -16,57 +26,67 @@
     "section": "",
     "text": "À la fin de la formation, vous saurez prendre un jeu de données brut, le préparer, l’analyser, le visualiser et communiquer vos conclusions.\n\n\nInstaller et utiliser R, RStudio et Quarto\n\nProgrammer avec les structures essentielles de R\n\nImporter, nettoyer et transformer des données\n\nCalculer et interpréter des statistiques descriptives\n\nCréer des visualisations avec ggplot2\n\nAppliquer corrélation, régression et tests de base\n\nProduire des rapports HTML, PDF et Word\n\nConstruire une application interactive Shiny\n\nMener un projet d’analyse de bout en bout",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
     "objectID": "index.html#pour-qui",
     "href": "index.html#pour-qui",
     "title": "Analyse de données avec R et Quarto",
-    "section": "0.2 Pour qui",
-    "text": "0.2 Pour qui\n\nAucune connaissance préalable de R n’est requise. Les notions statistiques sont introduites au fur et à mesure.\n\n\nDébutants absolus en programmation\n\nÉtudiants et universitaires\n\nProfessionnels en montée en compétences data\n\nCurieux de statistique appliquée",
+    "section": "0.3 Pour qui",
+    "text": "0.3 Pour qui\n\nAucune connaissance préalable de R n’est requise. Les notions statistiques sont introduites au fur et à mesure.\n\n\nDébutants absolus en programmation\n\nÉtudiants et universitaires\n\nProfessionnels en montée en compétences data\n\nCurieux de statistique appliquée",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
     "objectID": "index.html#parcours",
     "href": "index.html#parcours",
     "title": "Analyse de données avec R et Quarto",
-    "section": "0.3 Parcours pédagogique",
-    "text": "0.3 Parcours pédagogique\n\nOnze parties progressives, de l’installation des outils jusqu’aux projets de synthèse.\n\n\n\nIntroduction — Comprendre le métier et installer les outils\n\nFondamentaux de R — Syntaxe, types et objets\n\nAcquisition — Importer CSV, Excel et textes\n\nPréparation — Nettoyer, joindre, transformer\n\nStatistiques descriptives — Résumer et explorer\n\nVisualisation — Communiquer par les graphiques\n\nModélisation — Inférence, tests et régression\n\nRapports — Documenter avec Quarto\n\nShiny — Applications interactives\n\nProjets — Consolider par la pratique\n\nAnnexes — Glossaire et aide-mémoires",
+    "section": "0.4 Parcours pédagogique",
+    "text": "0.4 Parcours pédagogique\n\nOnze parties progressives, de l’installation des outils jusqu’aux projets de synthèse.\n\n\n\nIntroduction — Comprendre le métier et installer les outils\n\nFondamentaux de R — Syntaxe, types et objets\n\nAcquisition — Importer CSV, Excel et textes\n\nPréparation — Nettoyer, joindre, transformer\n\nStatistiques descriptives — Résumer et explorer\n\nVisualisation — Communiquer par les graphiques\n\nModélisation — Inférence, tests et régression\n\nRapports — Documenter avec Quarto\n\nShiny — Applications interactives\n\nProjets — Consolider par la pratique\n\nAnnexes — Glossaire et aide-mémoires",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
     "objectID": "index.html#comment-apprendre",
     "href": "index.html#comment-apprendre",
     "title": "Analyse de données avec R et Quarto",
-    "section": "0.4 Comment apprendre",
-    "text": "0.4 Comment apprendre\n\nLisez, exécutez, modifiez. L’expérimentation vaut mieux que la lecture passive.\n\n\nInstallez R, Quarto et les packages (voir le README et Section 2.7).\n\nSuivez les chapitres dans l’ordre.\n\nExécutez le code dans RStudio.\n\nFaites les exercices avant les corrections.\n\nRéalisez les projets de la Partie X.\n\n\n\n\n\n\n\nConseil\n\n\n\nChangez un paramètre, relancez, observez. C’est ainsi que les notions deviennent des réflexes.",
+    "section": "0.5 Comment apprendre",
+    "text": "0.5 Comment apprendre\n\nLisez, exécutez, modifiez. L’expérimentation vaut mieux que la lecture passive.\n\n\nInstallez R, Quarto et les packages (voir le README et Section 2.7).\n\nSuivez les chapitres dans l’ordre.\n\nExécutez le code dans RStudio.\n\nFaites les exercices avant les corrections.\n\nRéalisez les projets de la Partie X.\n\n\n\n\n\n\n\nConseil\n\n\n\nChangez un paramètre, relancez, observez. C’est ainsi que les notions deviennent des réflexes.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
     "objectID": "index.html#prérequis-techniques",
     "href": "index.html#prérequis-techniques",
     "title": "Analyse de données avec R et Quarto",
-    "section": "0.5 Prérequis techniques",
-    "text": "0.5 Prérequis techniques\n\nUn ordinateur suffit. Après l’installation initiale, le livre peut être reconstruit hors ligne.\n\n\nWindows, macOS ou Linux\n\nConnexion Internet pour installer les packages\n\nJeux de données fournis dans data/ ou intégrés à R",
+    "section": "0.6 Prérequis techniques",
+    "text": "0.6 Prérequis techniques\n\nUn ordinateur suffit. Après l’installation initiale, le livre peut être reconstruit hors ligne.\n\n\nWindows, macOS ou Linux\n\nConnexion Internet pour installer les packages\n\nJeux de données fournis dans data/ ou intégrés à R",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
     ]
   },
   {
     "objectID": "index.html#entrer-dans-le-premier-chapitre",
     "href": "index.html#entrer-dans-le-premier-chapitre",
     "title": "Analyse de données avec R et Quarto",
-    "section": "0.6 Entrer dans le premier chapitre",
-    "text": "0.6 Entrer dans le premier chapitre\nOuvrez le parcours par l’introduction à l’analyse de données, puis installez vos outils.\nCommencer →",
+    "section": "0.7 Entrer dans le premier chapitre",
+    "text": "0.7 Entrer dans le premier chapitre\nOuvrez le parcours par l’introduction à l’analyse de données, puis installez vos outils.\nCommencer →",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Analyse de données avec R et Quarto</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Votre parcours commence ici</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/00-page-de-garde.html",
+    "href": "chapters/00-page-de-garde.html",
+    "title": "Analyse de données avec R et Quarto",
+    "section": "",
+    "text": "LE GUIDE PRATIQUE · ÉDITION 2026\n\n\nDes premières lignes de code à l’analyse, aux graphiques et aux rapports professionnels.\n\n\nUn parcours pas à pas · Débutants bienvenus\n\n\nAuteur : Samba Diop\nsamba.diop3@univ-thies.sn\n\n\n\n\n\nIllustration de données : graphique en courbes et histogramme sur fond vert profond.",
+    "crumbs": [
+      "Analyse de données avec R et Quarto"
     ]
   },
   {

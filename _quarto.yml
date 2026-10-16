@@ -4,11 +4,13 @@ project:
   execute-dir: project
   resources:
     - resources/images/hero-data.svg
+    - resources/images/couverture.svg
+    - resources/images/couverture.png
 
 book:
   title: "Analyse de données avec R et Quarto"
   subtitle: "Livre de formation progressive pour débutants"
-  author: "Équipe pédagogique — à compléter"
+  author: "Samba Diop"
   date: today
   language: fr
   search: true
@@ -17,6 +19,7 @@ book:
   bread-crumbs: true
   favicon: resources/images/hero-data.svg
   chapters:
+    - chapters/00-page-de-garde.qmd
     - index.qmd
     - part: "Partie I — Introduction"
       chapters:
@@ -92,6 +95,7 @@ format:
     toc-depth: 2
     number-sections: true
     colorlinks: true
+    include-in-header: resources/cover-titlepage.tex
     geometry:
       - margin=2.5cm
     fig-pos: "H"

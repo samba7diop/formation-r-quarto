@@ -1,0 +1,26 @@
+% Page de garde personnalisée du PDF.
+\definecolor{coverbg}{HTML}{082F32}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \pagecolor{coverbg}
+    \color{white}
+    \centering
+    \vspace*{.035\textheight}
+    {\large\sffamily\bfseries\color{coverbg!18!white} LE GUIDE PRATIQUE \textperiodcentered\ \`EDITION 2026\par}
+    \vspace{.035\textheight}
+    {\Huge\sffamily\bfseries\@title\par}
+    \vspace{.02\textheight}
+    {\large\sffamily Des premi\`eres lignes de code \`a l'analyse, aux graphiques et aux rapports professionnels.\par}
+    \vspace{.045\textheight}
+    \includegraphics[width=.67\textwidth,height=.53\textheight,keepaspectratio]{resources/images/couverture.png}\par
+    \vfill
+    {\Large\sffamily\bfseries\@author\par}
+    \vspace{.4em}
+    {\small\sffamily samba.diop3@univ-thies.sn\par}
+    \vspace{.04\textheight}
+  \end{titlepage}
+  \nopagecolor
+}
+\makeatother

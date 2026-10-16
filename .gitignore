@@ -36,3 +36,8 @@ desktop.ini
 # renv
 renv/library/
 renv/staging/
+!resources/cover-titlepage.tex
+
+# Fichiers temporaires générés par les rendus Quarto
+*_files/
+/tmp/

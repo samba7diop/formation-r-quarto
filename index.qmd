@@ -1,26 +1,19 @@
 ---
-title: "Analyse de données avec R et Quarto"
+title: "Votre parcours commence ici"
 ---
 
-:::: {.livre-hero}
-::: {.livre-hero__media}
+:::: {.welcome-banner}
+::: {.welcome-banner__eyebrow}
+R · STATISTIQUE · VISUALISATION · QUARTO
 :::
 
-::: {.livre-hero__content}
-::: {.livre-hero__brand}
-```{=html}
-R &amp; Quarto<span>Formation données</span>
-```
-:::
+## Bienvenue dans le livre
 
-::: {.livre-hero__lead}
-Des bases du langage jusqu'au rapport professionnel et à l'application Shiny — un parcours clair pour débuter l'analyse de données.
-:::
+Un parcours complet pour apprendre à transformer des données brutes en analyses claires, graphiques utiles et rapports reproductibles.
 
-::: {.livre-hero__cta}
-[Commencer le chapitre 1](chapters/01-introduction.qmd){.primary}
-[Voir le parcours](#parcours){.secondary}
-:::
+::: {.welcome-banner__actions}
+[Commencer la formation](chapters/01-introduction.qmd){.welcome-primary}
+[Explorer le parcours](#parcours){.welcome-secondary}
 :::
 ::::
 

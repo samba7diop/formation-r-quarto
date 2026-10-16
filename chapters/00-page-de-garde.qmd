@@ -1,0 +1,43 @@
+::: {.content-visible when-format="html"}
+::: {.book-cover}
+::: {.book-cover__copy}
+
+::: {.book-cover__eyebrow}
+LE GUIDE PRATIQUE · ÉDITION 2026
+:::
+
+# Analyse de données avec R et Quarto {.unnumbered .unlisted}
+
+::: {.book-cover__subtitle}
+Des premières lignes de code à l’analyse, aux graphiques et aux rapports professionnels.
+:::
+
+::: {.book-cover__badge}
+Un parcours pas à pas · Débutants bienvenus
+:::
+
+::: {.book-cover__byline}
+Auteur : Samba Diop
+
+[samba.diop3@univ-thies.sn](mailto:samba.diop3@univ-thies.sn)
+:::
+
+:::
+
+![Illustration de données : graphique en courbes et histogramme sur fond vert profond.](../resources/images/couverture.svg){.book-cover__art width=100%}
+:::
+:::
+
+::: {.content-visible when-format="docx"}
+# Analyse de données avec R et Quarto {.unnumbered .unlisted}
+
+Des premières lignes de code à l’analyse, aux graphiques et aux rapports professionnels.
+
+![Illustration de données : graphique en courbes et histogramme sur fond vert profond.](../resources/images/couverture.png){width=100%}
+
+**Un parcours pas à pas · Débutants bienvenus**
+
+Auteur : Samba Diop
+
+[samba.diop3@univ-thies.sn](mailto:samba.diop3@univ-thies.sn)
+:::
