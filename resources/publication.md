@@ -5,7 +5,7 @@
 Publier le livre en ligne pour le consulter depuis un téléphone :
 
 ```text
-https://VOTRE_COMPTE.github.io/NOM_DU_DEPOT/
+https://samba7diop.github.io/formation-r-quarto/
 ```
 
 ## Méthode recommandée — GitHub Actions
